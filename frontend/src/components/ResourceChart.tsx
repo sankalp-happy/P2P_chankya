@@ -58,9 +58,10 @@ export function useChartFrame(ids: string[], stream: Stream, t: number, markAnom
   const hq = useHistories(ids, stream, w0, w1);
   const last = useRef<Frame | null>(null);
 
-  // Never mix: if the forecast/history is still the previous hour's placeholder,
-  // keep returning the last complete frame (same object, so the memoized chart skips rendering).
-  const ready = !!ix && !!fq.data && !fq.isPlaceholderData && ((!!hq.data && !hq.isPlaceholderData) || hq.isError);
+  // Actuals always come from local data at hour t, so the chart moves every tick. The forecast is the
+  // newest one available (it may be from a slightly earlier hour while the backend catches up); only its
+  // points after t are drawn, so nothing is misaligned.
+  const ready = !!ix && !!fq.data;
   const fcData = fq.data ?? [];
   const histData = (hq.isError ? [] : hq.data) ?? [];
   const key = `${ids.join()}|${stream}|${markAnomalies}`;
