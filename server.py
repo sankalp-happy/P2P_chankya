@@ -6,9 +6,13 @@ import numpy as np
 import pandas as pd
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Optional
+from dotenv import load_dotenv
 
-# 1. Resolve paths
+# 1. Load environment variables from .env
+load_dotenv()
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+
+# 2. Resolve model and metrics paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 POSSIBLE_MODEL_DIRS = [
     os.path.join(BASE_DIR, "models"),
@@ -45,8 +49,8 @@ classes = metrics["classes"]
 features = ["weight_g", "moisture_pct", "metal_signal", "transparency", "acoustic_hardness"]
 explainer = shap.TreeExplainer(model)
 
-# 2. Simple FastAPI app
-app = FastAPI(title="Smart-Bin Waste Classifier & Explainability API")
+# 3. Simple FastAPI app
+app = FastAPI(title="Waste Classifier API")
 
 
 class SensorItem(BaseModel):
@@ -55,12 +59,11 @@ class SensorItem(BaseModel):
     metal_signal: float
     transparency: float
     acoustic_hardness: float
-    groq_api_key: Optional[str] = None
 
 
 @app.post("/predict")
-def predict_and_explain(item: SensorItem):
-    # Prepare single row DataFrame
+def predict(item: SensorItem):
+    # Single row DataFrame
     data = pd.DataFrame([{
         "weight_g": float(item.weight_g),
         "moisture_pct": float(item.moisture_pct),
@@ -69,25 +72,25 @@ def predict_and_explain(item: SensorItem):
         "acoustic_hardness": float(item.acoustic_hardness)
     }])[features]
 
-    # Predict
+    # Predict class and confidence
     probs = model.predict_proba(data)[0]
     best_idx = int(np.argmax(probs))
     pred_label = classes[best_idx]
     confidence = float(probs[best_idx])
 
-    # SHAP values for the predicted class
+    # SHAP values for predicted class
     shap_vals = explainer.shap_values(data)
     class_shap = shap_vals[0, :, best_idx]
     shap_dict = {f: round(float(v), 4) for f, v in zip(features, class_shap)}
 
-    # Groq Explanation
-    api_key = item.groq_api_key or os.environ.get("GROQ_API_KEY")
+    # Groq Explanation (using key from .env)
     explanation = None
+    api_key = os.environ.get("GROQ_API_KEY")
 
-    if api_key:
+    if api_key and api_key.strip():
         try:
             from groq import Groq
-            client = Groq(api_key=api_key)
+            client = Groq(api_key=api_key.strip())
             prompt = (
                 f"A waste item was classified as '{pred_label}' with {confidence*100:.1f}% confidence.\n"
                 f"Sensors: {data.to_dict(orient='records')[0]}\n"
@@ -104,7 +107,7 @@ def predict_and_explain(item: SensorItem):
             explanation = f"Groq API error: {str(e)}"
 
     if not explanation:
-        # Simple fallback explanation using top SHAP contributor
+        # Fallback explanation using top positive SHAP contributor
         top_feature = max(shap_dict, key=lambda k: shap_dict[k])
         explanation = (
             f"The item was classified as {pred_label} ({confidence*100:.1f}% confidence). "
