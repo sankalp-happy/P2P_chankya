@@ -4,13 +4,12 @@ import joblib
 import shap
 import numpy as np
 import pandas as pd
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, Body
+from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 # 1. Load environment variables from .env
 load_dotenv()
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 # 2. Resolve model and metrics paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -50,19 +49,103 @@ features = ["weight_g", "moisture_pct", "metal_signal", "transparency", "acousti
 explainer = shap.TreeExplainer(model)
 
 # 3. Simple FastAPI app
-app = FastAPI(title="Waste Classifier API")
+app = FastAPI(
+    title="Smart-Bin Waste Classifier & Explainability API",
+    description="Real-time sensor inference with TreeSHAP feature attributions and Groq LLM explanations.",
+    version="1.0.0"
+)
 
 
 class SensorItem(BaseModel):
-    weight_g: float
-    moisture_pct: float
-    metal_signal: float
-    transparency: float
-    acoustic_hardness: float
+    weight_g: float = Field(..., description="Weight in grams", examples=[350.0])
+    moisture_pct: float = Field(..., description="Moisture percentage (0-100%)", examples=[72.0])
+    metal_signal: float = Field(..., description="Metal detector signal (0-100)", examples=[5.0])
+    transparency: float = Field(..., description="Optical transparency (0.0-1.0)", examples=[0.12])
+    acoustic_hardness: float = Field(..., description="Acoustic impact hardness (0.0-1.0)", examples=[0.10])
 
 
-@app.post("/predict")
-def predict(item: SensorItem):
+# Actual real-world examples for Swagger UI (/docs)
+EXAMPLES = {
+    "Food Waste (Organic Scrap)": {
+        "summary": "Food Waste (Organic Scrap)",
+        "description": "High moisture, heavy weight, low hardness and non-metallic.",
+        "value": {
+            "weight_g": 350.0,
+            "moisture_pct": 72.0,
+            "metal_signal": 5.0,
+            "transparency": 0.12,
+            "acoustic_hardness": 0.10
+        }
+    },
+    "Metal (Beverage Can)": {
+        "summary": "Metal (Beverage Can)",
+        "description": "Extremely high metal signal, dry, resonant acoustic impact.",
+        "value": {
+            "weight_g": 85.0,
+            "moisture_pct": 2.0,
+            "metal_signal": 95.0,
+            "transparency": 0.04,
+            "acoustic_hardness": 0.88
+        }
+    },
+    "Glass (Clear Bottle)": {
+        "summary": "Glass (Clear Bottle)",
+        "description": "High transparency, heavy mass, hard acoustic impact.",
+        "value": {
+            "weight_g": 380.0,
+            "moisture_pct": 5.0,
+            "metal_signal": 8.0,
+            "transparency": 0.75,
+            "acoustic_hardness": 0.82
+        }
+    },
+    "Plastic (Lightweight Cup)": {
+        "summary": "Plastic (Lightweight Cup)",
+        "description": "Ultralight, semi-translucent, dry, non-metallic.",
+        "value": {
+            "weight_g": 25.0,
+            "moisture_pct": 4.0,
+            "metal_signal": 2.0,
+            "transparency": 0.55,
+            "acoustic_hardness": 0.40
+        }
+    },
+    "Paper & Cardboard": {
+        "summary": "Paper & Cardboard",
+        "description": "Opaque, dry, low density, acoustic vibration absorber.",
+        "value": {
+            "weight_g": 120.0,
+            "moisture_pct": 10.0,
+            "metal_signal": 4.0,
+            "transparency": 0.02,
+            "acoustic_hardness": 0.15
+        }
+    },
+    "E-Waste (Component / Board)": {
+        "summary": "E-Waste (Component / Board)",
+        "description": "Heavy mass, moderate/high metal signal, opaque rigid casing.",
+        "value": {
+            "weight_g": 620.0,
+            "moisture_pct": 5.0,
+            "metal_signal": 60.0,
+            "transparency": 0.10,
+            "acoustic_hardness": 0.58
+        }
+    }
+}
+
+
+@app.post(
+    "/predict",
+    summary="Classify Waste Item & Explain with SHAP / Groq",
+    response_description="Predicted waste category, confidence, SHAP attribution values, and natural language explanation."
+)
+def predict(
+    item: SensorItem = Body(
+        ...,
+        openapi_examples=EXAMPLES
+    )
+):
     # Single row DataFrame
     data = pd.DataFrame([{
         "weight_g": float(item.weight_g),
