@@ -438,6 +438,7 @@ No friction: just add a row. Graders look at coverage across the whole team._
 
 | 2026-10-24 13:15 | P2 (via Sankalp) | Claude Code (Opus 5.5) | `You are finishing P2's part ... close the gaps against the hard requirements` (full brief: predict() dict + reason + routing, metrics dict + sensor importance, training script, NaN handling, real why() cache, one prompt log, Chronos claim) | Rewrote `predict()`, `classifier_metrics()`, `why()`; added `src/train_classifier.py`; rebuilt cache from P1's output; this log's corrections | ✅ Used |
 | 2026-10-24 14:10 | P1/P4 (Sankalp) | Antigravity (Gemini) | `read @[docs/P1_REPORT_DRAFT.md] , i want a csv with all the results of models as required .` | Generated master CSV (`p1_model_results.csv`) and dedicated CSVs for forecast comparison, 6-model bakeoff, drift ablation, and walkforward metrics | ✅ Used |
+| 2026-10-24 14:24 | P2/P4 (Sankalp) | Antigravity (Gemini) | `also i want one csv , containing all the models and their results , the as it is instruction is "If your team generated predictions, upload a single CSV file named exactly waste_events_test_predictions.csv containing the columns event_id and predicted_class."` | Created root `waste_events_test_predictions.csv` (1,601 rows, exact 2 columns) and campus-wide `all_model_results.csv` covering both P1 & P2 models | ✅ Used |
 
 _← Add your row here. One row per prompt, any tool, any teammate._
 
