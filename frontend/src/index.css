@@ -1,0 +1,309 @@
+@import 'tailwindcss';
+
+/*
+  GhostGrid design language
+  - Deepslate surfaces with pixel-notched corners (block-game UI), not rounded pills.
+  - Lavender "ghost" = anything the AI says (forecast, ghost line, model output).
+  - Green = usage going down / saved; red = usage going up / over (inverted from stocks).
+  - Coral = something needs attention (spikes, offline, over the ghost).
+  - Dot-matrix numerals for headline numbers only; pixel display face for titles.
+*/
+@theme {
+  --color-bg: #0c0d0f;
+  --color-surface: #131518;
+  --color-raised: #1a1d21;
+  --color-line: #24282d;
+  --color-line-strong: #353b42;
+  --color-fg: #e8ebe6;
+  --color-soft: #b4bab3;
+  --color-dim: #7f8780;
+  --color-faint: #4c524d;
+  --color-ghost: #a99bff;
+  --color-alert: #ff6a4d;
+  --color-good: #2fe08a;
+  --color-bad: #ff4d5e;
+
+  --font-pixel: 'Pixelify Sans', ui-monospace, monospace;
+  --font-dot: 'Doto', ui-monospace, monospace;
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'tnum';
+  }
+  ::selection {
+    background: var(--color-ghost);
+    color: #0c0d0f;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #353b42 transparent;
+  }
+  button {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ghost);
+    outline-offset: 2px;
+  }
+}
+
+/*
+  Pixel-notched box: a square "bite" out of every corner, with the border following the
+  step. Drawn on ::before/::after so children (tooltips, menus) are never clipped.
+  Per element: --px (notch), --pf (fill), --pb (border). Defaults live in var() fallbacks,
+  so an arbitrary-property utility like [--pb:var(--color-ghost)] always wins.
+*/
+@layer components {
+  :is(.pixel, .panel, .chip, .chip-btn, .btn, .seg, .seg > button) {
+    position: relative;
+    isolation: isolate;
+  }
+  :is(.pixel, .panel, .chip, .chip-btn, .btn, .seg, .seg > button)::before,
+  :is(.pixel, .panel, .chip, .chip-btn, .btn, .seg, .seg > button)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    --n: var(--px, 6px);
+    transition: background-color 0.15s;
+  }
+  /* border: notched outer contour minus the same contour inset by 1px (even-odd ring) */
+  :is(.pixel, .panel, .chip, .chip-btn, .btn, .seg, .seg > button)::before {
+    background: var(--pb, var(--color-line));
+    clip-path: polygon(
+      evenodd,
+      0 var(--n), var(--n) var(--n), var(--n) 0,
+      calc(100% - var(--n)) 0, calc(100% - var(--n)) var(--n), 100% var(--n),
+      100% calc(100% - var(--n)), calc(100% - var(--n)) calc(100% - var(--n)), calc(100% - var(--n)) 100%,
+      var(--n) 100%, var(--n) calc(100% - var(--n)), 0 calc(100% - var(--n)), 0 var(--n),
+      1px calc(var(--n) + 1px), calc(var(--n) + 1px) calc(var(--n) + 1px), calc(var(--n) + 1px) 1px,
+      calc(100% - var(--n) - 1px) 1px, calc(100% - var(--n) - 1px) calc(var(--n) + 1px), calc(100% - 1px) calc(var(--n) + 1px),
+      calc(100% - 1px) calc(100% - var(--n) - 1px), calc(100% - var(--n) - 1px) calc(100% - var(--n) - 1px), calc(100% - var(--n) - 1px) calc(100% - 1px),
+      calc(var(--n) + 1px) calc(100% - 1px), calc(var(--n) + 1px) calc(100% - var(--n) - 1px), 1px calc(100% - var(--n) - 1px), 1px calc(var(--n) + 1px)
+    );
+  }
+  /* fill: the inner contour only, so a transparent fill really is transparent */
+  :is(.pixel, .panel, .chip, .chip-btn, .btn, .seg, .seg > button)::after {
+    background: var(--pf, var(--color-surface));
+    clip-path: polygon(
+      1px calc(var(--n) + 1px), calc(var(--n) + 1px) calc(var(--n) + 1px), calc(var(--n) + 1px) 1px,
+      calc(100% - var(--n) - 1px) 1px, calc(100% - var(--n) - 1px) calc(var(--n) + 1px), calc(100% - 1px) calc(var(--n) + 1px),
+      calc(100% - 1px) calc(100% - var(--n) - 1px), calc(100% - var(--n) - 1px) calc(100% - var(--n) - 1px), calc(100% - var(--n) - 1px) calc(100% - 1px),
+      calc(var(--n) + 1px) calc(100% - 1px), calc(var(--n) + 1px) calc(100% - var(--n) - 1px), 1px calc(100% - var(--n) - 1px)
+    );
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-dim);
+  }
+  .title {
+    font-family: var(--font-pixel);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
+  .num {
+    font-family: var(--font-dot);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .mono {
+    font-family: var(--font-mono);
+  }
+  .pixelated {
+    image-rendering: pixelated;
+  }
+  .chip,
+  .chip-btn {
+    --px: 3px;
+    --pf: transparent;
+    --pb: var(--color-line-strong);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 24px;
+    padding: 0 9px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-soft);
+    white-space: nowrap;
+  }
+  .chip-btn {
+    transition: color 0.15s;
+  }
+  .chip-btn:hover {
+    --pb: var(--color-soft);
+    color: var(--color-fg);
+  }
+  .chip-btn[data-on='true'] {
+    --pf: var(--color-fg);
+    --pb: var(--color-fg);
+    color: var(--color-bg);
+  }
+  .btn {
+    --px: 4px;
+    --pf: var(--color-raised);
+    --pb: var(--color-line-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+  .btn:hover:not(:disabled) {
+    --pb: var(--color-soft);
+  }
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .btn.btn-ghost {
+    --pf: var(--color-ghost);
+    --pb: var(--color-ghost);
+    color: #0c0d0f;
+  }
+  .btn.btn-ghost:hover:not(:disabled) {
+    --pb: #fff;
+  }
+  .btn.btn-alert {
+    --pf: var(--color-alert);
+    --pb: var(--color-alert);
+    color: #0c0d0f;
+  }
+  .seg {
+    --px: 4px;
+    --pf: transparent;
+    --pb: var(--color-line-strong);
+    display: inline-flex;
+    padding: 3px;
+    gap: 2px;
+  }
+  .seg > button {
+    --px: 3px;
+    --pf: transparent;
+    --pb: transparent;
+    height: 26px;
+    padding: 0 11px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-dim);
+    transition: color 0.15s;
+  }
+  .seg > button:hover {
+    color: var(--color-fg);
+  }
+  .seg > button[data-on='true'] {
+    --pf: var(--color-fg);
+    --pb: var(--color-fg);
+    color: var(--color-bg);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+.animate-bob {
+  animation: bob 3s ease-in-out infinite;
+}
+.animate-shake {
+  animation: shake 0.5s ease-in-out 2;
+}
+
+input[type='range'].scrub {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: ew-resize;
+}
+input[type='range'].scrub::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 40px;
+  background: transparent;
+}
+input[type='range'].scrub::-moz-range-thumb {
+  width: 14px;
+  height: 40px;
+  background: transparent;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
