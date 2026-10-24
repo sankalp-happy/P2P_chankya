@@ -1,0 +1,163 @@
+{
+ "rows": [
+  {
+   "model": "simple guess (lag24)",
+   "stream": "electricity_kwh",
+   "n": 3820,
+   "mae": 5.188,
+   "wape_pct": 13.53,
+   "wape_exam_pct": 11.96,
+   "wape_working_pct": 11.73,
+   "size_kb": 0.0,
+   "train_s": 0.0,
+   "predict_ms": 0.005
+  },
+  {
+   "model": "Ridge",
+   "stream": "electricity_kwh",
+   "n": 3820,
+   "mae": 4.556,
+   "wape_pct": 11.88,
+   "wape_exam_pct": 11.46,
+   "wape_working_pct": 12.07,
+   "size_kb": 1.6,
+   "train_s": 0.16,
+   "predict_ms": 3.415
+  },
+  {
+   "model": "RandomForest",
+   "stream": "electricity_kwh",
+   "n": 3820,
+   "mae": 3.52,
+   "wape_pct": 9.18,
+   "wape_exam_pct": 9.37,
+   "wape_working_pct": 7.83,
+   "size_kb": 9317.7,
+   "train_s": 32.92,
+   "predict_ms": 6.182
+  },
+  {
+   "model": "MLP",
+   "stream": "electricity_kwh",
+   "n": 3820,
+   "mae": 7.226,
+   "wape_pct": 18.84,
+   "wape_exam_pct": 29.38,
+   "wape_working_pct": 8.71,
+   "size_kb": 86.4,
+   "train_s": 16.58,
+   "predict_ms": 3.969
+  },
+  {
+   "model": "our model (HistGB)",
+   "stream": "electricity_kwh",
+   "n": 3820,
+   "mae": 3.899,
+   "wape_pct": 10.17,
+   "wape_exam_pct": 9.85,
+   "wape_working_pct": 11.21,
+   "size_kb": 440.3,
+   "train_s": 3.76,
+   "predict_ms": 7.635
+  },
+  {
+   "model": "LSTM",
+   "stream": "electricity_kwh",
+   "n": 3820,
+   "mae": 7.091,
+   "wape_pct": 18.49,
+   "wape_exam_pct": 17.97,
+   "wape_working_pct": 16.42,
+   "size_kb": 17.2,
+   "train_s": 152.59,
+   "predict_ms": 22.149
+  },
+  {
+   "model": "simple guess (lag24)",
+   "stream": "water_litres",
+   "n": 3807,
+   "mae": 181.281,
+   "wape_pct": 15.97,
+   "wape_exam_pct": 13.81,
+   "wape_working_pct": 14.29,
+   "size_kb": 0.0,
+   "train_s": 0.0,
+   "predict_ms": 0.007
+  },
+  {
+   "model": "Ridge",
+   "stream": "water_litres",
+   "n": 3807,
+   "mae": 181.413,
+   "wape_pct": 15.98,
+   "wape_exam_pct": 14.15,
+   "wape_working_pct": 16.01,
+   "size_kb": 1.5,
+   "train_s": 0.15,
+   "predict_ms": 3.008
+  },
+  {
+   "model": "RandomForest",
+   "stream": "water_litres",
+   "n": 3807,
+   "mae": 138.765,
+   "wape_pct": 12.22,
+   "wape_exam_pct": 11.81,
+   "wape_working_pct": 11.36,
+   "size_kb": 8064.1,
+   "train_s": 44.99,
+   "predict_ms": 8.164
+  },
+  {
+   "model": "MLP",
+   "stream": "water_litres",
+   "n": 3807,
+   "mae": 193.273,
+   "wape_pct": 17.02,
+   "wape_exam_pct": 20.66,
+   "wape_working_pct": 13.14,
+   "size_kb": 88.0,
+   "train_s": 55.67,
+   "predict_ms": 3.209
+  },
+  {
+   "model": "our model (HistGB)",
+   "stream": "water_litres",
+   "n": 3807,
+   "mae": 147.701,
+   "wape_pct": 13.01,
+   "wape_exam_pct": 13.17,
+   "wape_working_pct": 12.57,
+   "size_kb": 368.5,
+   "train_s": 2.99,
+   "predict_ms": 7.253
+  },
+  {
+   "model": "LSTM",
+   "stream": "water_litres",
+   "n": 3807,
+   "mae": 260.276,
+   "wape_pct": 22.92,
+   "wape_exam_pct": 19.78,
+   "wape_working_pct": 20.15,
+   "size_kb": 17.2,
+   "train_s": 181.25,
+   "predict_ms": 22.08
+  }
+ ],
+ "protocol": "12 h horizon, both streams, features = forecast.FEATURES, test days 2026-09-28..2026-10-17 (20 days, all exam days inside). To bound runtime every model is retrained every 5 days, at midnight 09-28, 10-03, 10-08 and 10-13, on features(hourly(as_of=d)) with targets before d, and each fit serves the next 5 days; the same schedule applies to every model. All models are scored on the same rows (rows where any prediction is NaN are dropped). Non-GB models: NaN filled with the training median per column; Ridge and MLP use one-hot building/day_type and standard scaling, RandomForest the imputed ordinal features. Ridge(alpha=1); RandomForest(100 trees, min_samples_leaf=5, 1 job); MLP (64,32), early_stopping, max_iter=300; our model = forecast.fit. LSTM: single layer, hidden 32, input = last 168 hourly values of the building ending 12 h before the target (scaled per building with training mean/std, NaN -> 0) concatenated with the target hour's calendar features (hour/dow sin-cos, day_type one-hot, building one-hot, is_event, scaled temp), linear head, Adam lr 3e-3, batch 256, 5 epochs, MSE, one CPU thread, seed 0. Metrics: MAE, WAPE = 100*sum|err|/sum(actual) overall, on exam days and on working days. size_kb = joblib compress=3 (state_dict for the LSTM), train_s = mean seconds per fit, predict_ms = median wall time to prepare inputs and predict one building's 12 rows, one thread. Other processes were running on this machine, so timings are noisy (see load).",
+ "lstm_ran": true,
+ "load_start": [
+  33.68505859375,
+  31.94091796875,
+  32.2822265625
+ ],
+ "load_end": [
+  53.44482421875,
+  34.47509765625,
+  34.7568359375
+ ],
+ "cpu_count": 8,
+ "runtime_s": 2000,
+ "generated_at": "2026-10-24T13:40:49"
+}

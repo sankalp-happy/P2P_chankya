@@ -14,9 +14,21 @@ All numbers below were measured by `eval_forecast.py` (output `models/forecast_m
 | Our model, retrained daily | electricity **10.0%**, water **13.0%** | ~440 KB | ~3 s | ~7–16 ms |
 | Small model (100 trees, 15 leaves) | electricity 10.7%, water 13.5% | ~78 KB | ~1 s | ~5–8 ms |
 | Chronos-2 (pretrained, 120M parameters) | *P2 fills in* | *P2 measures* | none | *P2 fills in* |
-| *Model comparison (linear, random forest, MLP, LSTM)* | *from model_bakeoff.py* | | | |
 
 Error = 100 × Σ|error| / Σ actual. At 6 h ahead our model's error is 8.9% (electricity) and 13.7% (water). Timings were taken on a laptop shared with other processes, one CPU thread, so they are upper bounds; the point is the order of magnitude.
+
+**Which model family: we tested six.** Same 20 test days, same rows, 12 h ahead, every model retrained every 5 days (`model_bakeoff.py`, `models/bakeoff.md`):
+
+| Model | Electricity error | Water error | Size | Train per fit |
+|---|---|---|---|---|
+| Simple guess | 13.5% | 16.0% | 0 | none |
+| Linear regression (Ridge) | 11.9% | 16.0% | 2 KB | 0.2 s |
+| Small neural net (MLP 64-32) | 18.8% | 17.0% | 86 KB | 17–56 s |
+| LSTM (1 layer, 32 units, 168 h window) | 18.5% | 22.9% | 17 KB | 150–180 s |
+| Random forest (100 trees) | **9.2%** | **12.2%** | 8–9 MB | 33–45 s |
+| **Gradient boosting (ours)** | 10.2% | 13.0% | 0.4 MB | 3–4 s |
+
+The random forest is about 1 point more accurate, but it is ~20× larger and ~10× slower to train. The neural nets did worse than the simple guess: 120 days of data is too little for them, and our MLP and LSTM were small and untuned, so this is a fair-effort result, not their ceiling. Gradient boosting gives the best accuracy per unit of compute, so it is what runs in each building. One run, one seed; timings were taken on a busy laptop.
 
 **Why this trade-off.** The model cuts error by about a quarter to a third against the simple guess, retrains in seconds and forecasts in milliseconds on one CPU core, so a Raspberry Pi–class box in each building can run and retrain it every night with no cloud GPU. A 5.6× smaller model loses only 2–8% relative accuracy, so hardware is not the bottleneck at this size. A pretrained foundation model such as Chronos-2 has 120 million parameters against our few hundred KB; it belongs on the central server, if anywhere.
 
