@@ -8,7 +8,8 @@
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
-    "fixtures": "python scripts/build_fixtures.py"
+    "fixtures": "python scripts/build_fixtures.py",
+    "demo": "vite build && vite preview --port 4173 --strictPort"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.104.5",

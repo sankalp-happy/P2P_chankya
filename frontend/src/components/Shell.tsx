@@ -23,10 +23,11 @@ export const PAGES = [
 export default function Shell({ children }: { children: ReactNode }) {
   usePlayback();
   useKeyboard();
+  const playing = useTime((s) => s.playing);
   return (
     <div className="relative flex min-h-full">
       <div className="pointer-events-none fixed inset-0 -z-0 opacity-60">
-        <DotGrid dotSize={2.5} gap={24} shape="square" baseColor="#1c2024" activeColor="#a99bff" proximity={110} intro={false} />
+        <DotGrid dotSize={2.5} gap={24} shape="square" baseColor="#1c2024" activeColor="#a99bff" proximity={110} intro={false} paused={playing} mouseInteraction={!playing} />
       </div>
       <Sidebar />
       <div className="relative z-10 min-w-0 flex-1">
@@ -213,6 +214,47 @@ function Timeline() {
 
   const hoverDay = hover != null ? days[dayIndex(hover)] : null;
 
+  // Day cells, event ticks and month labels never change with the clock: build them once so a
+  // playback tick doesn't re-render ~250 elements.
+  const staticLayer = useMemo(
+    () => (
+      <>
+        {/* day cells */}
+          <div className="absolute inset-x-0 top-3 flex h-4 overflow-hidden">
+            {days.map((d) => (
+              <div
+                key={d.date}
+                className={clsx(
+                  'h-full flex-1 border-r border-bg/70',
+                  d.day_type === 'exam'
+                    ? 'bg-alert/55'
+                    : d.day_type === 'semester_break'
+                      ? 'bg-[#15181b]'
+                      : d.day_type === 'weekend' || d.day_type === 'holiday'
+                        ? 'bg-[#1d2125]'
+                        : 'bg-[#2a2f35]',
+                )}
+              />
+            ))}
+          </div>
+          {/* event ticks */}
+          {days.map((d, i) =>
+            d.event ? (
+              <span key={d.date} className="absolute top-0.5 h-1.5 w-px bg-dim" style={{ left: pct(i * 24 + 12) }} title={d.event} />
+            ) : null,
+          )}
+          {/* months */}
+          {months.map((m) => (
+            <span key={m.i} className="mono pointer-events-none absolute top-[30px] -translate-x-0 text-[9px] tracking-[0.14em] text-faint" style={{ left: pct(m.i * 24) }}>
+              {m.label}
+            </span>
+          ))}
+      </>
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [days, months],
+  );
+
   return (
     <div className="mx-auto max-w-[1680px] px-6 pb-3">
       <div
@@ -224,38 +266,9 @@ function Timeline() {
         }}
         onPointerLeave={() => setHover(null)}
       >
-        {/* day cells */}
-        <div className="absolute inset-x-0 top-3 flex h-4 overflow-hidden">
-          {days.map((d) => (
-            <div
-              key={d.date}
-              className={clsx(
-                'h-full flex-1 border-r border-bg/70',
-                d.day_type === 'exam'
-                  ? 'bg-alert/55'
-                  : d.day_type === 'semester_break'
-                    ? 'bg-[#15181b]'
-                    : d.day_type === 'weekend' || d.day_type === 'holiday'
-                      ? 'bg-[#1d2125]'
-                      : 'bg-[#2a2f35]',
-              )}
-            />
-          ))}
-        </div>
+        {staticLayer}
         {/* elapsed overlay */}
         <div className="pointer-events-none absolute top-3 left-0 h-4 bg-ghost/20" style={{ width: pct(t) }} />
-        {/* event ticks */}
-        {days.map((d, i) =>
-          d.event ? (
-            <span key={d.date} className="absolute top-0.5 h-1.5 w-px bg-dim" style={{ left: pct(i * 24 + 12) }} title={d.event} />
-          ) : null,
-        )}
-        {/* months */}
-        {months.map((m) => (
-          <span key={m.i} className="mono pointer-events-none absolute top-[30px] -translate-x-0 text-[9px] tracking-[0.14em] text-faint" style={{ left: pct(m.i * 24) }}>
-            {m.label}
-          </span>
-        ))}
         {/* hover ghost head */}
         {hover != null && (
           <>

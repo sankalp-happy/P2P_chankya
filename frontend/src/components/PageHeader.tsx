@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
+import { memo, type ReactNode } from 'react';
 import DecryptedText from './rb/DecryptedText';
 
-export function PageHeader({ index, title, sub, right }: { index: number; title: string; sub?: string; right?: ReactNode }) {
+export const PageHeader = memo(function PageHeader({ index, title, sub, right }: { index: number; title: string; sub?: string; right?: ReactNode }) {
   return (
     <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
       <div>
@@ -16,4 +16,4 @@ export function PageHeader({ index, title, sub, right }: { index: number; title:
       {right}
     </div>
   );
-}
+});

@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useId, useMemo, useRef, useState } from 'react';
 import {
   Area,
   Bar,
@@ -46,25 +46,23 @@ interface Frame {
   key: string;
   rows: ChartRow[];
   window: [number, number];
+  /** The hour this frame was built for. The chart draws NOW from here, never from a newer prop. */
+  now: number;
 }
 
 /** Builds one consistent frame for a building (or the campus sum when `ids` has several). */
 export function useChartFrame(ids: string[], stream: Stream, t: number, markAnomalies = false): Frame | null {
   const { data: ix } = useDataset();
   const [w0, w1] = chartWindow(t);
-  const fcs = useForecasts(ids, stream, t, HORIZON);
-  const hist = useHistories(ids, stream, w0, w1);
+  const fq = useForecasts(ids, stream, t, HORIZON);
+  const hq = useHistories(ids, stream, w0, w1);
   const last = useRef<Frame | null>(null);
 
-  // Never mix: if any forecast/history is still the previous hour's placeholder,
-  // keep showing the last complete frame instead of a half-updated one.
-  const ready =
-    !!ix &&
-    fcs.every((q) => q.data && !q.isPlaceholderData) &&
-    hist.every((q) => (q.data && !q.isPlaceholderData) || q.isError);
-
-  const fcData = fcs.map((q) => q.data);
-  const histData = hist.map((q) => q.data);
+  // Never mix: if the forecast/history is still the previous hour's placeholder,
+  // keep returning the last complete frame (same object, so the memoized chart skips rendering).
+  const ready = !!ix && !!fq.data && !fq.isPlaceholderData && ((!!hq.data && !hq.isPlaceholderData) || hq.isError);
+  const fcData = fq.data ?? [];
+  const histData = (hq.isError ? [] : hq.data) ?? [];
   const key = `${ids.join()}|${stream}|${markAnomalies}`;
 
   const frame = useMemo<Frame | null>(() => {
@@ -126,9 +124,9 @@ export function useChartFrame(ids: string[], stream: Stream, t: number, markAnom
       }
       rows.push(row);
     }
-    return { key, rows, window: [w0, w1] };
+    return { key, rows, window: [w0, w1], now: t };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, ix, key, t, w0, w1, markAnomalies, ...fcData, ...histData]);
+  }, [ready, ix, key, t, w0, w1, markAnomalies, fq.data, hq.data]);
 
   if (frame) last.current = frame;
   return frame ?? last.current;
@@ -274,21 +272,32 @@ function Candle(p:{ x?: number; y?: number; width?: number; height?: number; pay
   );
 }
 
-export function ResourceChart({
-  frame,
-  stream,
-  now,
-  height = 280,
-  compact,
-  ticker,
-}: {
+interface ChartProps {
   frame: Frame | null;
   stream: Stream;
   now: number;
   height?: number;
   compact?: boolean;
   ticker?: boolean;
-}) {
+}
+
+// Re-render only when a new complete frame arrives (or layout props change). `now` is read from
+// the frame, so a newer clock prop alone never redraws a chart with stale data.
+export const ResourceChart = memo(
+  ResourceChartImpl,
+  (a: ChartProps, b: ChartProps) =>
+    a.frame === b.frame && a.stream === b.stream && a.height === b.height && a.compact === b.compact && a.ticker === b.ticker && (a.frame != null || a.now === b.now),
+);
+
+function ResourceChartImpl({
+  frame,
+  stream,
+  now: nowProp,
+  height = 280,
+  compact,
+  ticker,
+}: ChartProps) {
+  const now = frame?.now ?? nowProp;
   const unit = STREAM_META[stream].unit;
   const mode = useTime((s) => s.chartMode);
   const yMax = useStableMax(frame);
@@ -304,6 +313,7 @@ export function ResourceChart({
 
   if (!frame || !stock) return <div style={{ height }} className="animate-pulse bg-raised" />;
   const runs = offlineRuns(frame.rows, now);
+  const hasAnomaly = frame.rows.some((r) => r.anomaly);
   const firstPred = stock.rows.findIndex((r) => r.t === now + 2 && r.pred != null);
   const candles = mode === 'candles' && !compact;
   const candleW = Math.max(3, ((width - (compact ? 42 : 48)) / Math.max(1, w1 - w0)) * CANDLE_H * 0.62);
@@ -370,12 +380,15 @@ export function ResourceChart({
                 strokeLinejoin="round"
                 isAnimationActive={false}
                 connectNulls={false}
-                dot={(p: { cx?: number; cy?: number; payload?: ChartRow; index?: number }) =>
-                  p.payload?.anomaly && p.cx != null && p.cy != null ? (
-                    <circle key={`a${p.index}`} cx={p.cx} cy={p.cy} r={4} fill="#0c0d0f" stroke="#ff6a4d" strokeWidth={1.75} />
-                  ) : (
-                    <g key={`a${p.index}`} />
-                  )
+                dot={
+                  hasAnomaly
+                    ? (p: { cx?: number; cy?: number; payload?: ChartRow; index?: number }) =>
+                        p.payload?.anomaly && p.cx != null && p.cy != null ? (
+                          <circle key={`a${p.index}`} cx={p.cx} cy={p.cy} r={4} fill="#0c0d0f" stroke="#ff6a4d" strokeWidth={1.75} />
+                        ) : (
+                          <g key={`a${p.index}`} />
+                        )
+                    : false
                 }
                 activeDot={{ r: 3.5, fill: '#e8ebe6', stroke: '#0c0d0f', strokeWidth: 2 }}
               />

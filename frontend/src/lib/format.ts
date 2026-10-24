@@ -1,8 +1,15 @@
-export const fmtInt = (x: number | null | undefined) =>
-  x == null || !Number.isFinite(x) ? '—' : Math.round(x).toLocaleString('en-IN');
+// Formatters are cached: toLocaleString() constructs a new Intl.NumberFormat on every call,
+// which showed up as a hotspot while the clock is playing.
+const nf = new Map<number, Intl.NumberFormat>();
+const fmt = (d: number) => {
+  let f = nf.get(d);
+  if (!f) nf.set(d, (f = new Intl.NumberFormat('en-IN', { minimumFractionDigits: d, maximumFractionDigits: d })));
+  return f;
+};
 
-export const fmtNum = (x: number | null | undefined, d = 1) =>
-  x == null || !Number.isFinite(x) ? '—' : x.toLocaleString('en-IN', { minimumFractionDigits: d, maximumFractionDigits: d });
+export const fmtInt = (x: number | null | undefined) => (x == null || !Number.isFinite(x) ? '—' : fmt(0).format(Math.round(x)));
+
+export const fmtNum = (x: number | null | undefined, d = 1) => (x == null || !Number.isFinite(x) ? '—' : fmt(d).format(x));
 
 export const fmtRs = (x: number | null | undefined) => (x == null || !Number.isFinite(x) ? '—' : `₹${fmtInt(x)}`);
 
