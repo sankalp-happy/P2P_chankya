@@ -1,6 +1,48 @@
 # claude.md — AI Usage Rules for P2P Chanakya
 
-This file tells every team member (and any AI assistant working on this repo) the rules for using Claude and other AI models in this project.
+This file tells every team member (and any AI assistant working on this repo) the rules for using Claude and other AI models in this project, and the general collaboration rules for the whole hackathon.
+
+---
+
+## 🤝 Team collaboration rules
+
+### File ownership — do not touch someone else's files
+
+Each person owns specific files. **Only edit your own files.** If you need a change in someone else's file, ask them — don't push it yourself.
+
+| Person | Owns |
+|---|---|
+| **P1** | `forecast.py`, `attribution.py` |
+| **P2** | `classifier.py`, `explain.py`, `docs/promptlog.md`, `claude.md` |
+| **P3** | `ingest.py`, `edge_buffer.py`, `incentives.py` |
+| **P4** | `app.py`, `pages/`, `schema.py`, report, video |
+
+> **Why this matters:** We have 4 hours. A single merge conflict can cost 20 minutes. Staying in your lane is the fastest strategy.
+
+### Git rules
+
+- **Pull before you push.** Always `git pull` before starting a new work block.
+- **Commit often, in small pieces.** One logical change per commit — don't batch unrelated edits.
+- **Write a useful commit message.** Bad: `"fix"`. Good: `"classifier: add fallback for low-confidence predictions"`.
+- **Never force-push to `main`.** If you have a conflict, resolve it locally first.
+- **Never commit secrets.** The Anthropic API key goes in a `.env` file, which is already in `.gitignore`.
+
+### Shared interfaces — do not change without telling everyone
+
+The function signatures in `schema.py` are agreed on at 0:00–0:20 and then **frozen**. If you absolutely must change a signature, post in the group chat first and wait for a reply. Changing a shared function silently breaks everyone downstream.
+
+### Communication
+
+- If you are going to be late on a handoff (P3 → P1 at 1:15), say so at least 10 minutes early.
+- If something is broken and it's not your file, raise it immediately — don't stay silent and work around it.
+- At 2:30 everyone stops adding features. No exceptions.
+
+### General
+
+- **Don't rename or move files** owned by someone else.
+- **Don't install new packages** without telling the group — everyone's environment must stay in sync.
+- **Don't use the Claude API key** for anything outside this project.
+- If you break something accidentally, say so and roll back — no blame, just fix it fast.
 
 ---
 
