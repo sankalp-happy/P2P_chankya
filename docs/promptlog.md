@@ -437,6 +437,7 @@ No friction: just add a row. Graders look at coverage across the whole team._
 | 2026-10-24 13:05 | P3/P4 | Antigravity (Gemini) | `Read the P3 handoff document and start from where it left` | Verified self-checks, resolved pandas deprecation in edge_buffer.py, filled N_LOW_COVERAGE_WEEKS and report draft placeholders, generated P1/P4 handoffs | ✅ Used |
 
 | 2026-10-24 13:15 | P2 (via Sankalp) | Claude Code (Opus 5.5) | `You are finishing P2's part ... close the gaps against the hard requirements` (full brief: predict() dict + reason + routing, metrics dict + sensor importance, training script, NaN handling, real why() cache, one prompt log, Chronos claim) | Rewrote `predict()`, `classifier_metrics()`, `why()`; added `src/train_classifier.py`; rebuilt cache from P1's output; this log's corrections | ✅ Used |
+| 2026-10-24 14:10 | P1/P4 (Sankalp) | Antigravity (Gemini) | `read @[docs/P1_REPORT_DRAFT.md] , i want a csv with all the results of models as required .` | Generated master CSV (`p1_model_results.csv`) and dedicated CSVs for forecast comparison, 6-model bakeoff, drift ablation, and walkforward metrics | ✅ Used |
 
 _← Add your row here. One row per prompt, any tool, any teammate._
 

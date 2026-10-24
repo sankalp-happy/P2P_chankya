@@ -1,0 +1,6 @@
+model,horizon,electricity_error_wape_pct,water_error_wape_pct,size,train_time_1_core,one_forecast_latency,notes
+Simple guess (same hour yesterday),12 h,13.5%,16.0%,0,none,<0.01 ms,Baseline
+"Our model, retrained daily",12 h,10.0%,13.0%,~440 KB,~3 s,~7-16 ms,Selected production model (HistGB)
+"Small model (100 trees, 15 leaves)",12 h,10.7%,13.5%,~78 KB,~1 s,~5-8 ms,Ultra-lightweight edge alternative
+"Chronos-2 (pretrained, 120M parameters)",12 h,P2 pending,P2 pending,120M params (~480 MB),none,P2 pending,Foundation model baseline (server-class only)
+"Our model, retrained daily (6 h ahead)",6 h,8.9%,13.7%,~438 KB,~3.8 s,~9.4 ms,Production 6h model for hours 1-6

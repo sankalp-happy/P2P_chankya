@@ -1,0 +1,7 @@
+incident,building_id,date_window,found_as,confidence,rs_at_stake,impact_detail
+"B04 solar inverter down, 6-8 Oct",B04,6-8 Oct,"equipment down (inverter note, only B04)",4/8,7259,907 kWh bought from grid
+"B03 lights/AC left on, 2 Oct holiday",B03,2 Oct,"left on (note, holiday, night, only B03)",8/8,1023,Flagged 7 hours before security note logged
+"B06 underground leak, 4-9 Aug",B06,4-9 Aug,"leak (warden note, only B06)",4/8,276,Caught by 7 Aug
+"B04 power analyzer calibration, 27 Aug",B04,27 Aug,"meter fault (note, 10x usual)",6/8,0,Not real use (meter artifact)
+"B02 water meter stuck at 0, 3-4 Sep",B02,3-4 Sep,"meter fault (zeros, note)",6/8,0,Stuck meter zero reading
+"B05 composter down, 7-13 Sep",B05,7-13 Sep,equipment down (note),4/8,0,929 kg extra landfill diverted to waste

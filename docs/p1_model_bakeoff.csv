@@ -1,0 +1,7 @@
+model,electricity_wape_pct,electricity_mae_kwh,water_wape_pct,water_mae_litres,size_kb,size_display,train_s,train_display,predict_ms,verdict
+Simple guess (lag24),13.53,5.188,15.97,181.281,0.0,0,0.0,none,0.005,Baseline heuristic
+Linear regression (Ridge),11.88,4.556,15.98,181.413,1.6,2 KB,0.16,0.2 s,3.415,"Fast and tiny, but misses non-linear effects"
+Small neural net (MLP 64-32),18.84,7.226,17.02,193.273,86.4,86 KB,36.1,17-56 s,3.969,Rejected: underperformed simple guess on small dataset
+"LSTM (1 layer, 32 units, 168 h window)",18.49,7.091,22.92,260.276,17.2,17 KB,166.9,150-180 s,22.149,Rejected: worst accuracy and slowest CPU training
+Random forest (100 trees),9.18,3.52,12.22,138.765,8690.9,8-9 MB,38.95,33-45 s,6.182,"Most accurate (+1% over HistGB), but 20x larger and 10x slower"
+Gradient boosting (ours - HistGB),10.17,3.899,13.01,147.701,404.4,0.4 MB,3.38,3-4 s,7.635,Selected: optimal accuracy per unit of compute

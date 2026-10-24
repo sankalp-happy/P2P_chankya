@@ -1,0 +1,4 @@
+where_pattern_changed,stream,horizon,frozen_model_wape_pct,retrained_daily_wape_pct,relative_gain_pct,impact_analysis
+"2 Oct holiday, electricity 12 h",electricity_kwh,12 h,18.8,15.9,15.4,Retraining prevents stale forecast during holiday consumption drop
+"Post-exam working days, water 6 h",water_litres,6 h,14.5,11.9,17.9,Retraining adapts quickly when regular campus routine resumes
+"All 20 days, water 6 h",water_litres,6 h,14.6,13.7,6.2,Consistent cheap insurance across all regimes with ~3s midnight retrain
