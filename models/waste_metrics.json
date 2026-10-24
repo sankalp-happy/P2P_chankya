@@ -1,0 +1,70 @@
+{
+  "model_name": "XGBoost (depth=4, n_est=100, lr=0.08)",
+  "accuracy": 0.8551,
+  "macro_f1": 0.8352,
+  "confusion": [
+    [
+      242,
+      12,
+      9,
+      45,
+      20,
+      23
+    ],
+    [
+      5,
+      1709,
+      3,
+      1,
+      97,
+      37
+    ],
+    [
+      9,
+      7,
+      218,
+      5,
+      8,
+      73
+    ],
+    [
+      16,
+      6,
+      2,
+      567,
+      6,
+      11
+    ],
+    [
+      1,
+      101,
+      0,
+      3,
+      1272,
+      84
+    ],
+    [
+      2,
+      33,
+      27,
+      3,
+      266,
+      1391
+    ]
+  ],
+  "classes": [
+    "ewaste",
+    "food_organic",
+    "glass",
+    "metal",
+    "paper_cardboard",
+    "plastic"
+  ],
+  "size_kb": 244.32,
+  "time_ms": 0.307,
+  "not_sure_threshold": 0.6,
+  "manual_sort_count": 614,
+  "manual_sort_pct": 9.72,
+  "sure_accuracy": 0.8918,
+  "sure_macro_f1": 0.866
+}
