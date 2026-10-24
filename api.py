@@ -80,7 +80,10 @@ def _static(name):
         return _records(m, stamps=["ts"])
     if name == "hourly":
         # The UI replays client-side from received_at, so send the full clean period once.
-        h = ingest.load_hourly().merge(ingest._deduped()[["building_id", "ts", "received_at"]], on=["building_id", "ts"], how="left")
+        # received_at = when the server could show the value: a real reading's arrival, or for a filled hour the moment
+        # the gap was known (next reading arrived; long gaps after the day closed). So lost hours also replay as offline.
+        known = ingest._base()[["building_id", "ts", "known_at"]].rename(columns={"known_at": "received_at"})
+        h = ingest.load_hourly().merge(known, on=["building_id", "ts"], how="left")
         h["quality"] = h.status.map(QUALITY)
         return _records(h, stamps=["ts", "received_at"])
     if name == "outages":
@@ -197,7 +200,8 @@ def forecast_history(building_id: str, stream: str, start: str, end: str):
 def _recommend(as_of, top):
     out = []
     for r in attribution.recommend(as_of, top):
-        r = {**r, "stream": UI_STREAM.get(r.get("stream"), r.get("stream")),  # landfill_kg / solar_kwh pass through
+        r = {**r, "metric": r.get("stream"), "stream": UI_STREAM.get(r.get("stream")),  # null for solar_kwh / landfill_kg
+             "cause_label": attribution.CAUSE_TEXT.get(r["cause"], r["cause"]),
              "evidence": [f"{fact} (+{pts})" for fact, pts in r.get("evidence", [])],
              "runner_up_evidence": [f"{fact} (+{pts})" for fact, pts in r.get("runner_up_evidence", [])]}
         out.append(_clean(r))
@@ -242,3 +246,32 @@ def predict(event: dict):
     if not isinstance(p, dict):  # P2's tuple: (label, confidence, time_ms, route)
         p = dict(zip(["label", "confidence", "time_ms", "route"], p))
     return _clean(p)
+
+
+# ---------- alerts: one list for the facility alerts panel ----------
+
+@lru_cache(maxsize=64)
+def _alerts(as_of):
+    t = pd.Timestamp(as_of)
+    out = []
+    for r in ingest.building_status(t).query("offline").itertuples():
+        out.append({"kind": "offline", "building_id": r.building_id, "ts": r.since.strftime(TS),
+                    "title": f"Offline since {r.since:%H:%M}, showing estimate",
+                    "detail": f"last reading {r.last_reading_ts:%d %b %H:%M}; buffered readings replace the estimate on reconnect"})
+    a = attribution.anomalies(t, 24)
+    for r in a.head(20).itertuples():
+        out.append({"kind": "anomaly", "building_id": r.building_id, "ts": r.ts.strftime(TS),
+                    "title": f"{UI_STREAM.get(r.stream, r.stream)}: {r.unusual}",
+                    "detail": f"actual {r.actual:g} vs expected {r.expected:g} ({r.kind})"})
+    sc = edge_buffer.source_check()
+    sc = sc[sc.disagrees & (sc.date >= t.normalize() - pd.Timedelta(days=7)) & (sc.date < t.normalize())]
+    for r in sc.itertuples():
+        out.append({"kind": "source_mismatch", "building_id": r.building_id, "ts": r.date.strftime(TS),
+                    "title": f"{r.stream}: sources disagree by {r.pct_diff:g}%", "detail": r.detail or f"trusted: {r.trusted_source}"})
+    return json.dumps(_clean(sorted(out, key=lambda x: x["ts"], reverse=True))).encode()
+
+
+@app.get("/api/alerts")
+def alerts(as_of: str):
+    """kind offline | anomaly | source_mismatch; e-waste and unsure bin items come from /api/predict per event."""
+    return _json(_alerts(as_of))
