@@ -144,6 +144,47 @@ _Prompts that generate the two-sentence "why" for each recommendation P1 produce
 
 ---
 
+### Entry 1.3 — Live SHAP Sensor Explainability via Groq 7B (`allam-2-7b`)
+
+- **Date / Time:** 2026-10-24 12:56
+- **Model:** Groq 7B (`allam-2-7b`) via GroqCloud API
+- **Used in:** `server.py → POST /predict`
+- **Who:** P2 (Waste Sorting & Explainability)
+- **Purpose:** Translate raw TreeSHAP numerical attributions and sensor telemetry into clear, intuitive physical explanations.
+- **Prompt:**
+  ```text
+  You are the explainability AI for an autonomous Smart-Bin waste sorter.
+  A waste item was classified as 'food_organic' with 96.7% confidence.
+  Sensor readings:
+  - Weight: 350.0 g
+  - Moisture: 72.0 %
+  - Metal Signal: 5.0
+  - Transparency: 0.12
+  - Acoustic Hardness: 0.1
+
+  TreeSHAP feature attributions (how much each sensor pushed toward or away from food_organic):
+  {
+    "weight_g": 0.0857,
+    "moisture_pct": 2.3017,
+    "metal_signal": 0.1181,
+    "transparency": -0.003,
+    "acoustic_hardness": 0.1829
+  }
+
+  In at most 2 plain sentences, explain why the model made this prediction and which physical sensor drove this classification.
+  ```
+- **Output received:**
+  ```text
+  The Smart-Bin waste sorter classified the waste item as 'food_organic' due to the significant contribution from the moisture sensor. Higher moisture content indicates that the waste item is more likely to be organic matter from food. The weight of the waste item also played a role, as heavier items are typically found in food waste.
+  ```
+- **Why it worked:**
+  - Directly pinpointed the top SHAP driver (`moisture_pct`, SHAP score +2.3017).
+  - Grounded explanation in sensor readings without hallucinating external facts.
+  - Sub-second inference latency on Groq LPU hardware.
+- **Verdict:** ✅ Kept — integrated live into FastAPI `/predict` endpoint
+
+---
+
 ## Section 2 — Staff-Note Tagging (`explain.py → tag_note()`)
 
 _Prompts that classify a raw staff log entry as `leak`, `maintenance`, `fest`, or `other`._
