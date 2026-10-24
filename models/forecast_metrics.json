@@ -1,0 +1,3160 @@
+{
+ "rows": [
+  {
+   "method": "simple guess",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "n": 3820,
+   "error_normal_days": 5.46,
+   "error_exam_days": 4.85,
+   "error_normal_pct": 14.95,
+   "error_exam_pct": 11.96,
+   "spikes_caught": 247,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 275,
+   "size_kb": 0.0,
+   "train_s": 0.0,
+   "time_ms": 0.004
+  },
+  {
+   "method": "our model",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "n": 3820,
+   "error_normal_days": 3.02,
+   "error_exam_days": 3.91,
+   "error_normal_pct": 8.28,
+   "error_exam_pct": 9.65,
+   "spikes_caught": 230,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 276,
+   "size_kb": 438.51,
+   "train_s": 3.81,
+   "time_ms": 9.401
+  },
+  {
+   "method": "our model, no retraining",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "n": 3820,
+   "error_normal_days": 3.12,
+   "error_exam_days": 4.05,
+   "error_normal_pct": 8.55,
+   "error_exam_pct": 9.98,
+   "spikes_caught": 190,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 301,
+   "size_kb": 434.21,
+   "train_s": 5.46,
+   "time_ms": 10.037
+  },
+  {
+   "method": "small model",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "n": 3820,
+   "error_normal_days": 3.13,
+   "error_exam_days": 3.94,
+   "error_normal_pct": 8.58,
+   "error_exam_pct": 9.71,
+   "spikes_caught": 199,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 274,
+   "size_kb": 77.74,
+   "train_s": 1.02,
+   "time_ms": 4.99
+  },
+  {
+   "method": "simple guess",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "n": 3820,
+   "error_normal_days": 5.46,
+   "error_exam_days": 4.85,
+   "error_normal_pct": 14.95,
+   "error_exam_pct": 11.96,
+   "spikes_caught": 247,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 275,
+   "size_kb": 0.0,
+   "train_s": 0.0,
+   "time_ms": 0.007
+  },
+  {
+   "method": "our model",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "n": 3820,
+   "error_normal_days": 3.7,
+   "error_exam_days": 3.98,
+   "error_normal_pct": 10.14,
+   "error_exam_pct": 9.81,
+   "spikes_caught": 202,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 282,
+   "size_kb": 440.75,
+   "train_s": 2.77,
+   "time_ms": 7.258
+  },
+  {
+   "method": "our model, no retraining",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "n": 3820,
+   "error_normal_days": 3.87,
+   "error_exam_days": 3.87,
+   "error_normal_pct": 10.58,
+   "error_exam_pct": 9.53,
+   "spikes_caught": 171,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 228,
+   "size_kb": 437.57,
+   "train_s": 3.1,
+   "time_ms": 7.392
+  },
+  {
+   "method": "small model",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "n": 3820,
+   "error_normal_days": 3.84,
+   "error_exam_days": 4.38,
+   "error_normal_pct": 10.52,
+   "error_exam_pct": 10.8,
+   "spikes_caught": 180,
+   "spikes_total": 517,
+   "spikes_total_exam": 339,
+   "false_alarms": 245,
+   "size_kb": 78.13,
+   "train_s": 0.71,
+   "time_ms": 4.178
+  },
+  {
+   "method": "simple guess",
+   "stream": "water_litres",
+   "horizon": 6,
+   "n": 3807,
+   "error_normal_days": 193.47,
+   "error_exam_days": 166.38,
+   "error_normal_pct": 17.93,
+   "error_exam_pct": 13.81,
+   "spikes_caught": 187,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 192,
+   "size_kb": 0.0,
+   "train_s": 0.0,
+   "time_ms": 0.005
+  },
+  {
+   "method": "our model",
+   "stream": "water_litres",
+   "horizon": 6,
+   "n": 3807,
+   "error_normal_days": 131.98,
+   "error_exam_days": 184.56,
+   "error_normal_pct": 12.23,
+   "error_exam_pct": 15.32,
+   "spikes_caught": 160,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 406,
+   "size_kb": 411.94,
+   "train_s": 3.85,
+   "time_ms": 9.41
+  },
+  {
+   "method": "our model, no retraining",
+   "stream": "water_litres",
+   "horizon": 6,
+   "n": 3807,
+   "error_normal_days": 146.83,
+   "error_exam_days": 189.39,
+   "error_normal_pct": 13.61,
+   "error_exam_pct": 15.72,
+   "spikes_caught": 161,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 475,
+   "size_kb": 421.17,
+   "train_s": 2.47,
+   "time_ms": 11.093
+  },
+  {
+   "method": "small model",
+   "stream": "water_litres",
+   "horizon": 6,
+   "n": 3807,
+   "error_normal_days": 146.92,
+   "error_exam_days": 192.51,
+   "error_normal_pct": 13.62,
+   "error_exam_pct": 15.98,
+   "spikes_caught": 204,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 610,
+   "size_kb": 74.4,
+   "train_s": 0.91,
+   "time_ms": 4.935
+  },
+  {
+   "method": "simple guess",
+   "stream": "water_litres",
+   "horizon": 12,
+   "n": 3807,
+   "error_normal_days": 193.47,
+   "error_exam_days": 166.38,
+   "error_normal_pct": 17.93,
+   "error_exam_pct": 13.81,
+   "spikes_caught": 187,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 192,
+   "size_kb": 0.0,
+   "train_s": 0.0,
+   "time_ms": 0.004
+  },
+  {
+   "method": "our model",
+   "stream": "water_litres",
+   "horizon": 12,
+   "n": 3807,
+   "error_normal_days": 135.36,
+   "error_exam_days": 161.69,
+   "error_normal_pct": 12.55,
+   "error_exam_pct": 13.42,
+   "spikes_caught": 152,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 380,
+   "size_kb": 401.06,
+   "train_s": 3.44,
+   "time_ms": 7.554
+  },
+  {
+   "method": "our model, no retraining",
+   "stream": "water_litres",
+   "horizon": 12,
+   "n": 3807,
+   "error_normal_days": 143.28,
+   "error_exam_days": 162.09,
+   "error_normal_pct": 13.28,
+   "error_exam_pct": 13.46,
+   "spikes_caught": 135,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 394,
+   "size_kb": 407.86,
+   "train_s": 5.05,
+   "time_ms": 8.185
+  },
+  {
+   "method": "small model",
+   "stream": "water_litres",
+   "horizon": 12,
+   "n": 3807,
+   "error_normal_days": 144.34,
+   "error_exam_days": 162.83,
+   "error_normal_pct": 13.38,
+   "error_exam_pct": 13.52,
+   "spikes_caught": 171,
+   "spikes_total": 380,
+   "spikes_total_exam": 283,
+   "false_alarms": 514,
+   "size_kb": 74.59,
+   "train_s": 0.82,
+   "time_ms": 4.6
+  }
+ ],
+ "daily": [
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 7.3,
+   "pct": 17.89
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 4.12,
+   "pct": 10.09
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 3.59,
+   "pct": 8.45
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 4.42,
+   "pct": 11.12
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 8.56,
+   "pct": 26.3
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 3.58,
+   "pct": 10.53
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 2.64,
+   "pct": 7.92
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 9.27,
+   "pct": 23.05
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 5.17,
+   "pct": 13.29
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 3.0,
+   "pct": 7.33
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 3.94,
+   "pct": 9.6
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 2.83,
+   "pct": 7.03
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 8.19,
+   "pct": 25.42
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 1.9,
+   "pct": 6.0
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 10.08,
+   "pct": 24.12
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 3.92,
+   "pct": 9.48
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 3.88,
+   "pct": 9.27
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 3.53,
+   "pct": 8.75
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 2.87,
+   "pct": 6.87
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 10.93,
+   "pct": 35.37
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 6.84,
+   "pct": 16.76
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 2.78,
+   "pct": 6.81
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.67,
+   "pct": 8.64
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.47,
+   "pct": 8.74
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 5.36,
+   "pct": 16.46
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 2.61,
+   "pct": 7.68
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 1.85,
+   "pct": 5.54
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 4.31,
+   "pct": 10.72
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.11,
+   "pct": 8.0
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.1,
+   "pct": 7.58
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 2.63,
+   "pct": 6.41
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 5.29,
+   "pct": 13.14
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 2.42,
+   "pct": 7.51
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 1.9,
+   "pct": 6.0
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.07,
+   "pct": 7.35
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.84,
+   "pct": 9.26
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.6,
+   "pct": 8.61
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 3.29,
+   "pct": 8.16
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 2.65,
+   "pct": 6.35
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 2.69,
+   "pct": 8.71
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 6.84,
+   "pct": 16.76
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 3.01,
+   "pct": 7.36
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 4.0,
+   "pct": 9.41
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 3.78,
+   "pct": 9.5
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 5.57,
+   "pct": 17.12
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.68,
+   "pct": 7.88
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 1.92,
+   "pct": 5.77
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 5.08,
+   "pct": 12.64
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 3.32,
+   "pct": 8.53
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.75,
+   "pct": 6.72
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.99,
+   "pct": 7.28
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 4.66,
+   "pct": 11.58
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.49,
+   "pct": 7.74
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.01,
+   "pct": 6.36
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.78,
+   "pct": 6.65
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 3.72,
+   "pct": 8.99
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 4.05,
+   "pct": 9.67
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 3.55,
+   "pct": 8.81
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.78,
+   "pct": 6.66
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 2.8,
+   "pct": 9.05
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 5.61,
+   "pct": 13.75
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.41,
+   "pct": 8.35
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 4.45,
+   "pct": 10.46
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.69,
+   "pct": 9.28
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 5.28,
+   "pct": 16.21
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.2,
+   "pct": 9.41
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 2.06,
+   "pct": 6.16
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 4.55,
+   "pct": 11.31
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.15,
+   "pct": 8.1
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 2.64,
+   "pct": 6.46
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.05,
+   "pct": 7.43
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 4.9,
+   "pct": 12.17
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 2.85,
+   "pct": 8.84
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 1.99,
+   "pct": 6.27
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.37,
+   "pct": 8.05
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.69,
+   "pct": 8.91
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.11,
+   "pct": 7.43
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 3.3,
+   "pct": 8.19
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 2.85,
+   "pct": 6.82
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 2.8,
+   "pct": 9.07
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 7.3,
+   "pct": 17.89
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 4.12,
+   "pct": 10.09
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 3.59,
+   "pct": 8.45
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 4.42,
+   "pct": 11.12
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 8.56,
+   "pct": 26.3
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 3.58,
+   "pct": 10.53
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 2.64,
+   "pct": 7.92
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 9.27,
+   "pct": 23.05
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 5.17,
+   "pct": 13.29
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 3.0,
+   "pct": 7.33
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 3.94,
+   "pct": 9.6
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 2.83,
+   "pct": 7.03
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 8.19,
+   "pct": 25.42
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 1.9,
+   "pct": 6.0
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 10.08,
+   "pct": 24.12
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 3.92,
+   "pct": 9.48
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 3.88,
+   "pct": 9.27
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 3.53,
+   "pct": 8.75
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 2.87,
+   "pct": 6.87
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 10.93,
+   "pct": 35.37
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 4.66,
+   "pct": 11.42
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 3.19,
+   "pct": 7.8
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 4.16,
+   "pct": 9.79
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 4.04,
+   "pct": 10.16
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 5.18,
+   "pct": 15.91
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 2.62,
+   "pct": 7.71
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 1.96,
+   "pct": 5.89
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 5.06,
+   "pct": 12.6
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 3.15,
+   "pct": 8.1
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 3.4,
+   "pct": 8.32
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 2.71,
+   "pct": 6.6
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 5.42,
+   "pct": 13.47
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 2.75,
+   "pct": 8.53
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 2.32,
+   "pct": 7.32
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 3.24,
+   "pct": 7.76
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 4.59,
+   "pct": 11.08
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 8.8,
+   "pct": 21.02
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 4.0,
+   "pct": 9.92
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 2.47,
+   "pct": 5.9
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 2.86,
+   "pct": 9.24
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 4.66,
+   "pct": 11.42
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 3.11,
+   "pct": 7.61
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 4.31,
+   "pct": 10.14
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 4.07,
+   "pct": 10.25
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 6.12,
+   "pct": 18.78
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 2.4,
+   "pct": 7.06
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 1.92,
+   "pct": 5.75
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 5.17,
+   "pct": 12.87
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 2.69,
+   "pct": 6.91
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 2.66,
+   "pct": 6.49
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 3.02,
+   "pct": 7.37
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 5.11,
+   "pct": 12.69
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 2.81,
+   "pct": 8.72
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 2.52,
+   "pct": 7.95
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 2.91,
+   "pct": 6.96
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 4.29,
+   "pct": 10.37
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 9.67,
+   "pct": 23.11
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 3.59,
+   "pct": 8.91
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 2.71,
+   "pct": 6.49
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 3.63,
+   "pct": 11.74
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 6.78,
+   "pct": 16.63
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.49,
+   "pct": 8.55
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 4.75,
+   "pct": 11.17
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 4.18,
+   "pct": 10.51
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 5.51,
+   "pct": 16.93
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.18,
+   "pct": 9.34
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 2.18,
+   "pct": 6.54
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 5.15,
+   "pct": 12.8
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.46,
+   "pct": 8.9
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 2.93,
+   "pct": 7.15
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.06,
+   "pct": 7.44
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 5.63,
+   "pct": 13.98
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.26,
+   "pct": 10.12
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 2.14,
+   "pct": 6.76
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.32,
+   "pct": 7.95
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 4.31,
+   "pct": 10.4
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 8.75,
+   "pct": 20.91
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.76,
+   "pct": 9.33
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 2.72,
+   "pct": 6.52
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "electricity_kwh",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 3.17,
+   "pct": 10.27
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 244.8,
+   "pct": 20.6
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 136.79,
+   "pct": 11.11
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 119.18,
+   "pct": 9.52
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 193.28,
+   "pct": 16.48
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 314.98,
+   "pct": 36.32
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 211.87,
+   "pct": 20.79
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 75.55,
+   "pct": 7.45
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 211.9,
+   "pct": 18.09
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 141.79,
+   "pct": 11.45
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 125.53,
+   "pct": 10.25
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 149.74,
+   "pct": 12.52
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 173.12,
+   "pct": 14.85
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 207.36,
+   "pct": 19.94
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 103.77,
+   "pct": 10.98
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 298.35,
+   "pct": 24.13
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 141.06,
+   "pct": 11.88
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 139.56,
+   "pct": 11.08
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 156.86,
+   "pct": 13.51
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 131.91,
+   "pct": 10.7
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "simple guess",
+   "mae": 347.41,
+   "pct": 38.5
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 529.94,
+   "pct": 44.6
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 148.47,
+   "pct": 12.06
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 140.42,
+   "pct": 11.22
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 159.93,
+   "pct": 13.64
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 164.27,
+   "pct": 18.94
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 141.4,
+   "pct": 13.87
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 75.4,
+   "pct": 7.44
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 138.09,
+   "pct": 11.79
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 113.46,
+   "pct": 9.16
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 144.36,
+   "pct": 11.78
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 110.06,
+   "pct": 9.2
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 172.87,
+   "pct": 14.83
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 96.31,
+   "pct": 9.26
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 97.48,
+   "pct": 10.31
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 173.13,
+   "pct": 14.0
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 165.3,
+   "pct": 13.92
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 135.84,
+   "pct": 10.78
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 133.52,
+   "pct": 11.5
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 115.39,
+   "pct": 9.36
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model",
+   "mae": 153.65,
+   "pct": 17.03
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 529.94,
+   "pct": 44.6
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 130.87,
+   "pct": 10.63
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 144.41,
+   "pct": 11.54
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 136.33,
+   "pct": 11.62
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 163.9,
+   "pct": 18.9
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 135.82,
+   "pct": 13.33
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 78.62,
+   "pct": 7.75
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 236.27,
+   "pct": 20.17
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 116.64,
+   "pct": 9.42
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 124.56,
+   "pct": 10.17
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 114.71,
+   "pct": 9.59
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 166.33,
+   "pct": 14.27
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 96.17,
+   "pct": 9.25
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 97.15,
+   "pct": 10.28
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 297.32,
+   "pct": 24.04
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 155.09,
+   "pct": 13.06
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 153.03,
+   "pct": 12.15
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 143.58,
+   "pct": 12.37
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 128.95,
+   "pct": 10.46
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "our model, no retraining",
+   "mae": 164.97,
+   "pct": 18.28
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 569.6,
+   "pct": 47.94
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 122.27,
+   "pct": 9.93
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 141.89,
+   "pct": 11.34
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 155.9,
+   "pct": 13.29
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 185.19,
+   "pct": 21.36
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 168.41,
+   "pct": 16.52
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 81.21,
+   "pct": 8.01
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 192.64,
+   "pct": 16.44
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 112.77,
+   "pct": 9.11
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 152.13,
+   "pct": 12.42
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 103.27,
+   "pct": 8.63
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 178.23,
+   "pct": 15.29
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 113.83,
+   "pct": 10.94
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 106.11,
+   "pct": 11.23
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 182.92,
+   "pct": 14.79
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 186.95,
+   "pct": 15.75
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 129.3,
+   "pct": 10.27
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 145.88,
+   "pct": 12.56
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 124.32,
+   "pct": 10.08
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 6,
+   "method": "small model",
+   "mae": 192.09,
+   "pct": 21.29
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 244.8,
+   "pct": 20.6
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 136.79,
+   "pct": 11.11
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 119.18,
+   "pct": 9.52
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 193.28,
+   "pct": 16.48
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 314.98,
+   "pct": 36.32
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 211.87,
+   "pct": 20.79
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 75.55,
+   "pct": 7.45
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 211.9,
+   "pct": 18.09
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 141.79,
+   "pct": 11.45
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 125.53,
+   "pct": 10.25
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 149.74,
+   "pct": 12.52
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 173.12,
+   "pct": 14.85
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 207.36,
+   "pct": 19.94
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 103.77,
+   "pct": 10.98
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 298.35,
+   "pct": 24.13
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 141.06,
+   "pct": 11.88
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 139.56,
+   "pct": 11.08
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 156.86,
+   "pct": 13.51
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 131.91,
+   "pct": 10.7
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "simple guess",
+   "mae": 347.41,
+   "pct": 38.5
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 374.67,
+   "pct": 31.53
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 124.81,
+   "pct": 10.14
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 150.25,
+   "pct": 12.01
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 144.63,
+   "pct": 12.33
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 176.62,
+   "pct": 20.37
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 129.96,
+   "pct": 12.75
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 67.48,
+   "pct": 6.66
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 123.57,
+   "pct": 10.55
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 111.44,
+   "pct": 9.0
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 140.77,
+   "pct": 11.49
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 116.26,
+   "pct": 9.72
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 166.97,
+   "pct": 14.32
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 99.56,
+   "pct": 9.57
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 96.06,
+   "pct": 10.16
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 199.93,
+   "pct": 16.17
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 154.16,
+   "pct": 12.98
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 140.63,
+   "pct": 11.16
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 142.19,
+   "pct": 12.25
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 118.65,
+   "pct": 9.62
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model",
+   "mae": 163.43,
+   "pct": 18.11
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 374.67,
+   "pct": 31.53
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 139.46,
+   "pct": 11.33
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 147.54,
+   "pct": 11.79
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 126.6,
+   "pct": 10.79
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 173.19,
+   "pct": 19.97
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 127.79,
+   "pct": 12.54
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 77.76,
+   "pct": 7.67
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 142.48,
+   "pct": 12.16
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 128.83,
+   "pct": 10.4
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 116.92,
+   "pct": 9.54
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 119.29,
+   "pct": 9.97
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 160.65,
+   "pct": 13.78
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 105.83,
+   "pct": 10.18
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 98.09,
+   "pct": 10.38
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 222.16,
+   "pct": 17.96
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 167.52,
+   "pct": 14.11
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 155.0,
+   "pct": 12.31
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 144.88,
+   "pct": 12.48
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 131.97,
+   "pct": 10.7
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "our model, no retraining",
+   "mae": 171.64,
+   "pct": 19.02
+  },
+  {
+   "date": "2026-09-28",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 363.29,
+   "pct": 30.57
+  },
+  {
+   "date": "2026-09-29",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 118.81,
+   "pct": 9.65
+  },
+  {
+   "date": "2026-09-30",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 152.28,
+   "pct": 12.17
+  },
+  {
+   "date": "2026-10-01",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 144.69,
+   "pct": 12.34
+  },
+  {
+   "date": "2026-10-02",
+   "day_type": "holiday",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 193.37,
+   "pct": 22.3
+  },
+  {
+   "date": "2026-10-03",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 150.65,
+   "pct": 14.78
+  },
+  {
+   "date": "2026-10-04",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 80.36,
+   "pct": 7.93
+  },
+  {
+   "date": "2026-10-05",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 135.6,
+   "pct": 11.57
+  },
+  {
+   "date": "2026-10-06",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 106.59,
+   "pct": 8.61
+  },
+  {
+   "date": "2026-10-07",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 140.79,
+   "pct": 11.49
+  },
+  {
+   "date": "2026-10-08",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 110.34,
+   "pct": 9.22
+  },
+  {
+   "date": "2026-10-09",
+   "day_type": "exam",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 191.44,
+   "pct": 16.42
+  },
+  {
+   "date": "2026-10-10",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 102.91,
+   "pct": 9.9
+  },
+  {
+   "date": "2026-10-11",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 103.34,
+   "pct": 10.93
+  },
+  {
+   "date": "2026-10-12",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 167.55,
+   "pct": 13.55
+  },
+  {
+   "date": "2026-10-13",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 178.83,
+   "pct": 15.06
+  },
+  {
+   "date": "2026-10-14",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 140.4,
+   "pct": 11.15
+  },
+  {
+   "date": "2026-10-15",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 153.01,
+   "pct": 13.18
+  },
+  {
+   "date": "2026-10-16",
+   "day_type": "working",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 128.26,
+   "pct": 10.4
+  },
+  {
+   "date": "2026-10-17",
+   "day_type": "weekend",
+   "stream": "water_litres",
+   "horizon": 12,
+   "method": "small model",
+   "mae": 189.03,
+   "pct": 20.95
+  }
+ ],
+ "protocol": "Walk-forward over 20 test days, 2026-09-28 to 2026-10-17 (all 9 exam days, and the 2026-10-02 holiday, fall inside). For every stream (electricity, water), horizon (6 h, 12 h) and test day d, the model is retrained at midnight d on features(hourly(as_of=d)), using only target hours before d and only meter rows already received by d, then used to forecast the 24 target hours of day d. Test rows have an observed target; features look back from the forecast origin (target hour minus horizon), plus the same hour yesterday and last week, and the temperature is the real daily mean of the target date, a stand-in for a weather forecast. Methods: 'simple guess' predicts the same hour yesterday; 'our model' is forecast.fit (gradient boosting, up to 300 iterations) retrained every day; 'our model, no retraining' is one fit at midnight 2026-09-28 used for all 20 days (the drift comparison, it has never seen an exam day); 'small model' is the same daily retraining with up to 100 iterations, 15 leaves per tree and learning rate 0.1. All methods are scored on the same rows, dropping any row where a prediction is missing. Errors are split by the target date's day type (exam vs everything else, so the holiday and weekends count as normal): MAE in kWh or litres, and percent error = 100 * sum|error| / sum(actual). A spike is an actual value above the 95th percentile of that stream, building and hour of day over all data before 2026-09-28 (a fixed threshold); a spike is caught when the prediction is above the same threshold, and a false alarm is a prediction above it when the actual was not. size_kb is the joblib (compress=3) file size, train_s the mean seconds per fit (the single fit for no retraining), time_ms the median wall time of one building's 12-hour forecast (12 rows) on one core; for the simple guess it times reading the stored same-hour-yesterday values. Everything is measured on single-threaded scikit-learn 1.4.1.",
+ "generated_at": "2026-10-24T12:38:35"
+}
