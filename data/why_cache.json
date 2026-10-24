@@ -1,0 +1,32 @@
+{
+  "B05_water_leak": "Unusual water consumption spike of 18,400 L/hr detected at Boys Hostel (B05) at 2:00 AM, likely caused by an underground pipe leakage near the washroom line. Dispatching a plumber immediately can prevent structural damage and save approximately Rs 1,472.",
+  "B06_water_leak": "Water flow at Girls Hostel (B06) exceeded normal baselines by 12,200 L during overnight hours with continuous pump cycling. A suspected pipe rupture requires urgent maintenance, with estimated savings of Rs 976 upon repair.",
+  "B07_foodcourt_cooking": "Food Court (B07) electricity usage surged to 142 kWh ahead of the upcoming Alumni Meet catering preparations for 1,500+ attendees. Staff should verify equipment shutdown post-prep to conserve Rs 1,136 and reduce 99.4 kg of CO2 emissions.",
+  "B01_ac_overnight": "Academic Block A (B01) registered 86 kWh electricity consumption during holiday hours when lights and AC were inadvertently left ON in the main reading hall. Security shutdown of idle HVAC units will save Rs 688 and 60.2 kg CO2.",
+  "B04_solar_inverter": "Rooftop solar generation at Lab Block (B04) dropped to 0 kWh due to a red error indicator on the main solar inverter. Vendor inverter reset will restore 45 kWh/day of clean solar power, saving Rs 360 daily.",
+  "B07_composter_motor": "Organic waste processing at Food Court composter stalled following a burnt motor failure reported in facility logs. Replacing the 5 HP composter motor will divert 320 kg of wet waste daily from landfill.",
+  "B02_power_analyzer": "Electrical telemetry at Academic Block B (B02) reported aberrant voltage fluctuations during power analyzer recalibration. Regular sensor zeroing confirmed normal grid draw with zero revenue leakage.",
+  "default_leak": "A sudden abnormal water flow was flagged against historical baselines. Immediate valve inspection is recommended to stop continuous water loss and save campus resources.",
+  "default_high_electric": "Electricity draw significantly exceeded the 12-hour predictive forecast during low-occupancy hours. Inspecting lighting and HVAC controls will avoid unnecessary utility billing.",
+  "notes_tagged": {
+    "Water meter running fast, tank refilling often. Wet patch near 3rd floor washroom pipe.": "leak",
+    "Plumber called. Leak suspected in underground line near block entrance.": "leak",
+    "Leak fixed by plumber. Line replaced.": "maintenance",
+    "Power analyzer was being calibrated today, reading looked odd.": "maintenance",
+    "Water meter stuck at zero, need to call vendor.": "maintenance",
+    "Composter not working since yesterday, motor burnt. Wet waste going with normal garbage.": "maintenance",
+    "Composter motor replaced, working again.": "maintenance",
+    "Alumni meet tomorrow, expecting 1500+ people. Extra cooking planned.": "fest",
+    "Electricity meter reading seems higher than last month though classes are normal.": "other",
+    "Holiday but AC and lights were left ON in main reading hall. Security noticed in the evening.": "other",
+    "Rooftop solar inverter showing red error light since Tuesday.": "maintenance",
+    "Solar inverter reset by vendor, generating again.": "maintenance",
+    "Energy meter display flickers sometimes. Not sure if the reading is correct.": "maintenance",
+    "counted at end of day": "other",
+    "evening reading": "other",
+    "as per meter": "other",
+    "approx": "other",
+    "daily total": "other",
+    "manual cross-check": "other"
+  }
+}
