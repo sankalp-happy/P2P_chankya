@@ -1,13 +1,4 @@
 {
-  "B05_water_leak": "Unusual water consumption spike of 18,400 L/hr detected at Boys Hostel (B05) at 2:00 AM, likely caused by an underground pipe leakage near the washroom line. Dispatching a plumber immediately can prevent structural damage and save approximately Rs 1,472.",
-  "B06_water_leak": "Water flow at Girls Hostel (B06) exceeded normal baselines by 12,200 L during overnight hours with continuous pump cycling. A suspected pipe rupture requires urgent maintenance, with estimated savings of Rs 976 upon repair.",
-  "B07_foodcourt_cooking": "Food Court (B07) electricity usage surged to 142 kWh ahead of the upcoming Alumni Meet catering preparations for 1,500+ attendees. Staff should verify equipment shutdown post-prep to conserve Rs 1,136 and reduce 99.4 kg of CO2 emissions.",
-  "B01_ac_overnight": "Academic Block A (B01) registered 86 kWh electricity consumption during holiday hours when lights and AC were inadvertently left ON in the main reading hall. Security shutdown of idle HVAC units will save Rs 688 and 60.2 kg CO2.",
-  "B04_solar_inverter": "Rooftop solar generation at Lab Block (B04) dropped to 0 kWh due to a red error indicator on the main solar inverter. Vendor inverter reset will restore 45 kWh/day of clean solar power, saving Rs 360 daily.",
-  "B07_composter_motor": "Organic waste processing at Food Court composter stalled following a burnt motor failure reported in facility logs. Replacing the 5 HP composter motor will divert 320 kg of wet waste daily from landfill.",
-  "B02_power_analyzer": "Electrical telemetry at Academic Block B (B02) reported aberrant voltage fluctuations during power analyzer recalibration. Regular sensor zeroing confirmed normal grid draw with zero revenue leakage.",
-  "default_leak": "A sudden abnormal water flow was flagged against historical baselines. Immediate valve inspection is recommended to stop continuous water loss and save campus resources.",
-  "default_high_electric": "Electricity draw significantly exceeded the 12-hour predictive forecast during low-occupancy hours. Inspecting lighting and HVAC controls will avoid unnecessary utility billing.",
   "notes_tagged": {
     "Water meter running fast, tank refilling often. Wet patch near 3rd floor washroom pipe.": "leak",
     "Plumber called. Leak suspected in underground line near block entrance.": "leak",
@@ -28,5 +19,191 @@
     "approx": "other",
     "daily total": "other",
     "manual cross-check": "other"
+  },
+  "why": {
+    "f121de031de294e0": {
+      "as_of": "2026-08-07 20:00",
+      "building_id": "B06",
+      "cause": "leak",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Girls Hostel (B06) water was 3.8x the usual for 12 AM on a working or exam day, most likely leak (staff note (warden, 05 Aug 17:40): 'Water meter running fast, tank refilling often. Wet patch near 3rd floor washroom pipe.'). Action: Send plumber to check B06 Girls Hostel water lines and tanks; 40,591 L above normal so far (40,591 L / 1000 x 0.85 kWh = 34.5 kWh; x Rs 8 = Rs 276; x 0.7 kg = 24 kg CO2)."
+    },
+    "c322810868169504": {
+      "as_of": "2026-08-07 20:00",
+      "building_id": "B04",
+      "cause": "weather",
+      "stream": "solar_kwh",
+      "source": "template",
+      "text": "Engineering Labs & Innovation Centre (B04) solar generation was only 46% of the usual for a typical day, most likely weather (calendar: 02 Aug rainfall 26.4 mm, humidity 85% (above the 75th percentile so far: 6.2 mm or 75%)). Action: No action: low solar on a rainy day (26.4 mm) across 2 buildings; 163 kWh bought from the grid instead."
+    },
+    "e79f2efed46d054c": {
+      "as_of": "2026-08-07 20:00",
+      "building_id": "B07",
+      "cause": "weather",
+      "stream": "solar_kwh",
+      "source": "template",
+      "text": "Food Court (B07) solar generation was only 47% of the usual for a typical day, most likely weather (calendar: 02 Aug rainfall 26.4 mm, humidity 85% (above the 75th percentile so far: 6.2 mm or 75%)). Action: No action: low solar on a rainy day (26.4 mm) across 2 buildings; 120 kWh bought from the grid instead."
+    },
+    "ddbf068260e6d8b0": {
+      "as_of": "2026-08-28 06:00",
+      "building_id": "B04",
+      "cause": "meter_fault",
+      "stream": "electricity_kwh",
+      "source": "template",
+      "text": "Engineering Labs & Innovation Centre (B04) electricity was 10.3x the usual for 7 AM on a working or exam day, most likely meter fault (staff note (lab_technician, 27 Aug 16:30): 'Power analyzer was being calibrated today, reading looked odd.'). Action: Check or recalibrate the B04 Engineering Labs & Innovation Centre electricity meter: it read 6,234 vs 658 kWh usual. Not counted as savings."
+    },
+    "f001a59ba66abc07": {
+      "as_of": "2026-08-28 06:00",
+      "building_id": "B01",
+      "cause": "unexplained",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Academic Block A (B01) water was 1.8x the usual for 11 AM on a weekend or holiday, most likely unexplained (No staff note, calendar event or shift pattern matches). Action: Investigate B01 Academic Block A water: no staff note or event explains it. Ask the building supervisor (766 L / 1000 x 0.85 kWh = 0.7 kWh; x Rs 8 = Rs 5; x 0.7 kg = 0 kg CO2)."
+    },
+    "9d00bb55e6d7a337": {
+      "as_of": "2026-08-28 06:00",
+      "building_id": "B04",
+      "cause": "unexplained",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Engineering Labs & Innovation Centre (B04) water was 1.8x the usual for 9 AM on a weekend or holiday, most likely unexplained (No staff note, calendar event or shift pattern matches). Action: Investigate B04 Engineering Labs & Innovation Centre water: no staff note or event explains it. Ask the building supervisor (54 L / 1000 x 0.85 kWh = 0.0 kWh; x Rs 8 = Rs 0; x 0.7 kg = 0 kg CO2)."
+    },
+    "8e4ae7f333a94e73": {
+      "as_of": "2026-08-28 06:00",
+      "building_id": "B02",
+      "cause": "unexplained",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Academic Block B (B02) water was 1.9x the usual for 12 PM on a weekend or holiday, most likely unexplained (No staff note, calendar event or shift pattern matches). Action: Investigate B02 Academic Block B water: no staff note or event explains it. Ask the building supervisor (718 L / 1000 x 0.85 kWh = 0.6 kWh; x Rs 8 = Rs 5; x 0.7 kg = 0 kg CO2)."
+    },
+    "fbcde97b3e80a6cf": {
+      "as_of": "2026-08-28 06:00",
+      "building_id": "B08",
+      "cause": "unexplained",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Admin Block (B08) water was 2.8x the usual for 10 AM on a weekend or holiday, most likely unexplained (No staff note, calendar event or shift pattern matches). Action: Investigate B08 Admin Block water: no staff note or event explains it. Ask the building supervisor (56 L / 1000 x 0.85 kWh = 0.0 kWh; x Rs 8 = Rs 0; x 0.7 kg = 0 kg CO2)."
+    },
+    "40ed308c33c8c233": {
+      "as_of": "2026-09-05 06:00",
+      "building_id": "B02",
+      "cause": "meter_fault",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Academic Block B (B02) water was only 0% of the usual for 5 PM on a working or exam day, most likely meter fault (staff note (facility_staff, 03 Sep 17:10): 'Water meter stuck at zero, need to call vendor.'). Action: Check or recalibrate the B02 Academic Block B water meter: it read 0 vs 18,724 L usual. Not counted as savings."
+    },
+    "0b81fe823bb01bc1": {
+      "as_of": "2026-09-10 06:00",
+      "building_id": "B01",
+      "cause": "event_surge",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Academic Block A (B01) water was 1.9x the usual for 2 PM on a weekend or holiday, most likely event surge (calendar: Teachers Day celebration & faculty felicitation (05 Sep)). Action: Plan for the extra load at B01 Academic Block A on event and exam days, and switch off idle loads when it ends; 862 L above normal (862 L / 1000 x 0.85 kWh = 0.7 kWh; x Rs 8 = Rs 6; x 0.7 kg = 1 kg CO2)."
+    },
+    "e9cc6ae3b24816df": {
+      "as_of": "2026-09-10 06:00",
+      "building_id": "B02",
+      "cause": "event_surge",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Academic Block B (B02) water was 2.1x the usual for 2 PM on a weekend or holiday, most likely event surge (calendar: Teachers Day celebration & faculty felicitation (05 Sep)). Action: Plan for the extra load at B02 Academic Block B on event and exam days, and switch off idle loads when it ends; 150 L above normal (150 L / 1000 x 0.85 kWh = 0.1 kWh; x Rs 8 = Rs 1; x 0.7 kg = 0 kg CO2)."
+    },
+    "cb9f8189527f03cd": {
+      "as_of": "2026-09-10 06:00",
+      "building_id": "B02",
+      "cause": "meter_fault",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Academic Block B (B02) water was only 0% of the usual for 4 PM on a working or exam day, most likely meter fault (staff note (facility_staff, 03 Sep 17:10): 'Water meter stuck at zero, need to call vendor.'). Action: Check or recalibrate the B02 Academic Block B water meter: it read 0 vs 18,704 L usual. Not counted as savings."
+    },
+    "ca538fa0ca7b2e37": {
+      "as_of": "2026-09-10 06:00",
+      "building_id": "B05",
+      "cause": "equipment_down",
+      "stream": "landfill_kg",
+      "source": "template",
+      "text": "Boys Hostel (B05) landfill waste was 4.2x the usual for a working or exam day, most likely equipment down (staff note (hostel_supervisor, 08 Sep 18:00): 'Composter not working since yesterday, motor burnt. Wet waste going with normal garbage.'). Action: Repair B05 composter; 929 kg above normal went to landfill."
+    },
+    "e7c94c26e6aa787a": {
+      "as_of": "2026-09-10 06:00",
+      "building_id": "B08",
+      "cause": "unexplained",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Admin Block (B08) water was 2.9x the usual for 1 PM on a weekend or holiday, most likely unexplained (No staff note, calendar event or shift pattern matches). Action: Investigate B08 Admin Block water: no staff note or event explains it. Ask the building supervisor (106 L / 1000 x 0.85 kWh = 0.1 kWh; x Rs 8 = Rs 1; x 0.7 kg = 0 kg CO2)."
+    },
+    "d7ae789b8621270d": {
+      "as_of": "2026-10-03 06:00",
+      "building_id": "B03",
+      "cause": "left_on",
+      "stream": "electricity_kwh",
+      "source": "template",
+      "text": "Central Library (B03) electricity was 4.9x the usual for 6 AM on a weekend or holiday, most likely left on (staff note (librarian, 02 Oct 19:05): 'Holiday but AC and lights were left ON in main reading hall. Security noticed in the evening.'). Action: Switch off AC and lights in B03 Central Library when it is empty; 128 kWh above normal so far (128 kWh; x Rs 8 = Rs 1,023; x 0.7 kg = 90 kg CO2)."
+    },
+    "9c9d4f79dc7d9cb1": {
+      "as_of": "2026-10-03 06:00",
+      "building_id": "B03",
+      "cause": "event_surge",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Central Library (B03) water was 1.9x the usual for 3 PM on a working or exam day, most likely event surge (calendar: Mid-semester exams begin; Mid-sem Day 2 (Core Engineering theory exams) (28 Sep)). Action: Plan for the extra load at B03 Central Library on event and exam days, and switch off idle loads when it ends; 2,140 L above normal (2,140 L / 1000 x 0.85 kWh = 1.8 kWh; x Rs 8 = Rs 15; x 0.7 kg = 1 kg CO2)."
+    },
+    "86858aa53416093a": {
+      "as_of": "2026-10-03 06:00",
+      "building_id": "B01",
+      "cause": "weather",
+      "stream": "solar_kwh",
+      "source": "template",
+      "text": "Academic Block A (B01) solar generation was only 46% of the usual for a typical day, most likely weather (calendar: 02 Oct rainfall 31.6 mm, humidity 89% (above the 75th percentile so far: 8.0 mm or 76%)). Action: No action: low solar on a rainy day (31.6 mm) across 2 buildings; 245 kWh bought from the grid instead."
+    },
+    "0cbafd1b9f028d48": {
+      "as_of": "2026-10-09 06:00",
+      "building_id": "B04",
+      "cause": "weather",
+      "stream": "solar_kwh",
+      "source": "template",
+      "text": "Engineering Labs & Innovation Centre (B04) solar generation was only 43% of the usual for a typical day, most likely weather (calendar: 02 Oct rainfall 31.6 mm, humidity 89% (above the 75th percentile so far: 8.0 mm or 76%)). Action: No action: low solar on a rainy day (31.6 mm) across 2 buildings; 171 kWh bought from the grid instead."
+    },
+    "2e2da43b71408d07": {
+      "as_of": "2026-10-03 06:00",
+      "building_id": "B02",
+      "cause": "unexplained",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Academic Block B (B02) water was 1.6x the usual for 12 PM on a weekend or holiday, most likely unexplained (No staff note, calendar event or shift pattern matches). Action: Investigate B02 Academic Block B water: no staff note or event explains it. Ask the building supervisor (99 L / 1000 x 0.85 kWh = 0.1 kWh; x Rs 8 = Rs 1; x 0.7 kg = 0 kg CO2)."
+    },
+    "533383b6eca95935": {
+      "as_of": "2026-10-09 06:00",
+      "building_id": "B04",
+      "cause": "equipment_down",
+      "stream": "solar_kwh",
+      "source": "template",
+      "text": "Engineering Labs & Innovation Centre (B04) solar generation was only 0% of the usual for a typical day, most likely equipment down (staff note (lab_technician, 07 Oct 11:30): 'Rooftop solar inverter showing red error light since Tuesday.'). Action: Call vendor to reset/repair the B04 rooftop solar inverter; 907 kWh of solar lost so far (bought from the grid) (907 kWh lost x Rs 8 = Rs 7,259; x 0.7 kg = 635 kg CO2)."
+    },
+    "f71d377c0da7807a": {
+      "as_of": "2026-10-09 06:00",
+      "building_id": "B03",
+      "cause": "left_on",
+      "stream": "electricity_kwh",
+      "source": "template",
+      "text": "Central Library (B03) electricity was 4.8x the usual for 6 AM on a weekend or holiday, most likely left on (staff note (librarian, 02 Oct 19:05): 'Holiday but AC and lights were left ON in main reading hall. Security noticed in the evening.'). Action: Switch off AC and lights in B03 Central Library when it is empty; 128 kWh above normal so far (128 kWh; x Rs 8 = Rs 1,023; x 0.7 kg = 89 kg CO2)."
+    },
+    "75142723dc2e70e4": {
+      "as_of": "2026-10-09 06:00",
+      "building_id": "B03",
+      "cause": "event_surge",
+      "stream": "water_litres",
+      "source": "template",
+      "text": "Central Library (B03) water was 2.0x the usual for 6 PM on a working or exam day, most likely event surge (calendar: Mid-sem Day 5 (Engineering lab practicals & viva); Mid-sem Day 6 (Computing lab practicals) (05 Oct)). Action: Plan for the extra load at B03 Central Library on event and exam days, and switch off idle loads when it ends; 4,262 L above normal (4,262 L / 1000 x 0.85 kWh = 3.6 kWh; x Rs 8 = Rs 29; x 0.7 kg = 3 kg CO2)."
+    },
+    "ec17aa2f35a3cba3": {
+      "as_of": "2026-10-09 06:00",
+      "building_id": "B01",
+      "cause": "weather",
+      "stream": "solar_kwh",
+      "source": "template",
+      "text": "Academic Block A (B01) solar generation was only 46% of the usual for a typical day, most likely weather (calendar: 02 Oct rainfall 31.6 mm, humidity 89% (above the 75th percentile so far: 8.0 mm or 76%)). Action: No action: low solar on a rainy day (31.6 mm) across 2 buildings; 246 kWh bought from the grid instead."
+    }
   }
 }

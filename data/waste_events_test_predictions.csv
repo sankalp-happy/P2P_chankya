@@ -19,11 +19,11 @@ E00095,paper_cardboard
 E00096,metal
 E00098,plastic
 E00105,food_organic
-E00107,paper_cardboard
+E00107,plastic
 E00109,plastic
 E00111,plastic
 E00119,plastic
-E00124,paper_cardboard
+E00124,food_organic
 E00130,paper_cardboard
 E00132,metal
 E00135,food_organic
@@ -31,7 +31,7 @@ E00137,paper_cardboard
 E00147,food_organic
 E00157,plastic
 E00164,food_organic
-E00165,plastic
+E00165,paper_cardboard
 E00169,metal
 E00173,food_organic
 E00175,metal
@@ -164,10 +164,10 @@ E00744,glass
 E00746,paper_cardboard
 E00748,ewaste
 E00749,metal
-E00757,plastic
+E00757,paper_cardboard
 E00763,metal
 E00765,food_organic
-E00770,paper_cardboard
+E00770,plastic
 E00771,food_organic
 E00776,paper_cardboard
 E00780,food_organic
@@ -177,7 +177,7 @@ E00804,plastic
 E00818,glass
 E00819,paper_cardboard
 E00821,paper_cardboard
-E00828,metal
+E00828,plastic
 E00833,food_organic
 E00841,paper_cardboard
 E00847,food_organic
@@ -208,7 +208,7 @@ E00975,plastic
 E00978,food_organic
 E00980,food_organic
 E00982,metal
-E00983,plastic
+E00983,paper_cardboard
 E00986,food_organic
 E00989,paper_cardboard
 E00992,paper_cardboard
@@ -347,7 +347,7 @@ E01761,food_organic
 E01764,paper_cardboard
 E01770,food_organic
 E01771,paper_cardboard
-E01781,paper_cardboard
+E01781,food_organic
 E01784,plastic
 E01785,paper_cardboard
 E01786,food_organic
@@ -393,7 +393,7 @@ E01992,plastic
 E01994,food_organic
 E02005,food_organic
 E02006,food_organic
-E02010,metal
+E02010,plastic
 E02019,metal
 E02023,plastic
 E02025,food_organic
@@ -457,7 +457,7 @@ E02302,plastic
 E02317,ewaste
 E02325,food_organic
 E02331,paper_cardboard
-E02332,plastic
+E02332,paper_cardboard
 E02346,plastic
 E02348,paper_cardboard
 E02359,paper_cardboard
@@ -724,7 +724,7 @@ E03703,plastic
 E03717,food_organic
 E03719,paper_cardboard
 E03732,plastic
-E03735,plastic
+E03735,food_organic
 E03751,food_organic
 E03759,plastic
 E03761,metal
@@ -748,7 +748,7 @@ E03841,plastic
 E03842,paper_cardboard
 E03846,metal
 E03849,metal
-E03858,ewaste
+E03858,metal
 E03865,paper_cardboard
 E03873,food_organic
 E03891,metal
@@ -819,7 +819,7 @@ E04205,paper_cardboard
 E04209,paper_cardboard
 E04218,plastic
 E04221,paper_cardboard
-E04224,ewaste
+E04224,paper_cardboard
 E04227,ewaste
 E04228,plastic
 E04231,glass
@@ -843,7 +843,7 @@ E04324,paper_cardboard
 E04330,plastic
 E04335,paper_cardboard
 E04336,plastic
-E04340,plastic
+E04340,paper_cardboard
 E04342,paper_cardboard
 E04344,plastic
 E04349,ewaste
@@ -877,7 +877,7 @@ E04437,paper_cardboard
 E04441,glass
 E04442,food_organic
 E04446,paper_cardboard
-E04453,paper_cardboard
+E04453,plastic
 E04468,plastic
 E04473,paper_cardboard
 E04480,food_organic
@@ -915,7 +915,7 @@ E04591,paper_cardboard
 E04595,food_organic
 E04603,ewaste
 E04604,plastic
-E04612,ewaste
+E04612,food_organic
 E04619,paper_cardboard
 E04626,metal
 E04643,glass
@@ -955,7 +955,7 @@ E04794,plastic
 E04802,paper_cardboard
 E04805,food_organic
 E04807,plastic
-E04808,plastic
+E04808,glass
 E04817,paper_cardboard
 E04825,ewaste
 E04827,food_organic
@@ -1017,7 +1017,7 @@ E05101,food_organic
 E05103,food_organic
 E05108,paper_cardboard
 E05109,plastic
-E05111,metal
+E05111,ewaste
 E05120,paper_cardboard
 E05122,plastic
 E05123,plastic
@@ -1145,7 +1145,7 @@ E05661,paper_cardboard
 E05663,food_organic
 E05666,food_organic
 E05670,food_organic
-E05671,plastic
+E05671,glass
 E05674,metal
 E05675,food_organic
 E05676,metal
@@ -1177,7 +1177,7 @@ E05763,food_organic
 E05773,paper_cardboard
 E05775,plastic
 E05782,food_organic
-E05801,metal
+E05801,ewaste
 E05803,paper_cardboard
 E05805,food_organic
 E05808,plastic
@@ -1188,7 +1188,7 @@ E05823,plastic
 E05825,plastic
 E05831,food_organic
 E05837,metal
-E05840,glass
+E05840,ewaste
 E05844,plastic
 E05845,food_organic
 E05853,food_organic
@@ -1237,7 +1237,7 @@ E06088,metal
 E06093,glass
 E06105,paper_cardboard
 E06113,paper_cardboard
-E06115,plastic
+E06115,food_organic
 E06116,food_organic
 E06125,food_organic
 E06126,paper_cardboard
@@ -1304,7 +1304,7 @@ E06464,paper_cardboard
 E06471,paper_cardboard
 E06475,plastic
 E06480,plastic
-E06483,paper_cardboard
+E06483,plastic
 E06485,paper_cardboard
 E06487,plastic
 E06489,plastic
@@ -1361,7 +1361,7 @@ E06693,paper_cardboard
 E06707,food_organic
 E06708,plastic
 E06710,food_organic
-E06722,plastic
+E06722,paper_cardboard
 E06732,food_organic
 E06735,metal
 E06745,paper_cardboard

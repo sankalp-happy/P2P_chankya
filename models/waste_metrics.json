@@ -1,55 +1,65 @@
 {
-  "model_name": "XGBoost (depth=4, n_est=100, lr=0.08)",
-  "accuracy": 0.8551,
-  "macro_f1": 0.8352,
+  "model_name": "XGBoost (d=4, n=100, lr=0.08)",
+  "evaluation": "stratified 5-fold CV, out-of-fold predictions, seed 42; size and time measured on this laptop",
+  "accuracy": 0.8537,
+  "accuracy_fold_std": 0.0097,
+  "accuracy_per_class": {
+    "ewaste": 0.6752,
+    "food_organic": 0.9217,
+    "glass": 0.6906,
+    "metal": 0.9359,
+    "paper_cardboard": 0.8693,
+    "plastic": 0.8049
+  },
+  "macro_f1": 0.8342,
   "confusion": [
     [
-      242,
+      237,
       12,
-      9,
-      45,
+      10,
+      49,
       20,
       23
     ],
     [
-      5,
-      1709,
-      3,
+      6,
+      1707,
+      2,
       1,
       97,
-      37
+      39
     ],
     [
-      9,
+      8,
       7,
-      218,
+      221,
       5,
       8,
-      73
+      71
     ],
     [
-      16,
+      13,
       6,
       2,
-      567,
+      569,
       6,
-      11
+      12
+    ],
+    [
+      0,
+      98,
+      0,
+      3,
+      1270,
+      90
     ],
     [
       1,
-      101,
-      0,
-      3,
-      1272,
-      84
-    ],
-    [
-      2,
-      33,
-      27,
-      3,
+      37,
+      28,
+      4,
       266,
-      1391
+      1386
     ]
   ],
   "classes": [
@@ -60,11 +70,60 @@
     "paper_cardboard",
     "plastic"
   ],
-  "size_kb": 244.32,
-  "time_ms": 0.307,
+  "sensor_importance": {
+    "moisture_pct": 0.2394,
+    "acoustic_hardness": 0.1623,
+    "transparency": 0.1482,
+    "weight_g": 0.1463,
+    "metal_signal": 0.1453
+  },
+  "sensor_importance_method": "permutation importance (accuracy drop), XGBoost, mean over the 5 validation folds",
+  "size_kb": 923.02,
+  "time_ms": 0.561,
   "not_sure_threshold": 0.6,
-  "manual_sort_count": 614,
-  "manual_sort_pct": 9.72,
-  "sure_accuracy": 0.8918,
-  "sure_macro_f1": 0.866
+  "manual_sort_pct": 9.44,
+  "sure_accuracy": 0.8896,
+  "sure_macro_f1": 0.8638,
+  "comparison": {
+    "Decision Tree (depth=4)": {
+      "accuracy": 0.8131,
+      "fold_std": 0.0081,
+      "macro_f1": 0.7754,
+      "manual_pct": 2.5499,
+      "size_kb": 4.91,
+      "time_ms": 0.445
+    },
+    "Random Forest (n=100, d=12)": {
+      "accuracy": 0.8494,
+      "fold_std": 0.0071,
+      "macro_f1": 0.8278,
+      "manual_pct": 10.9598,
+      "size_kb": 9824.58,
+      "time_ms": 6.182
+    },
+    "HistGradientBoosting": {
+      "accuracy": 0.8413,
+      "fold_std": 0.0083,
+      "macro_f1": 0.8204,
+      "manual_pct": 5.1473,
+      "size_kb": 2120.0,
+      "time_ms": 19.613
+    },
+    "LightGBM (n=100, d=5)": {
+      "accuracy": 0.8464,
+      "fold_std": 0.0106,
+      "macro_f1": 0.8261,
+      "manual_pct": 7.7922,
+      "size_kb": 1619.2,
+      "time_ms": 1.001
+    },
+    "XGBoost (d=4, n=100, lr=0.08)": {
+      "accuracy": 0.8537,
+      "fold_std": 0.0097,
+      "macro_f1": 0.8342,
+      "manual_pct": 9.4393,
+      "size_kb": 923.02,
+      "time_ms": 0.561
+    }
+  }
 }

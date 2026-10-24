@@ -1,7 +1,7 @@
 import os
 import json
 import joblib
-import shap
+import xgboost as xgb
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, Body
@@ -43,7 +43,6 @@ with open(METRICS_PATH, "r", encoding="utf-8") as f:
 
 classes = metrics["classes"]
 features = ["weight_g", "moisture_pct", "metal_signal", "transparency", "acoustic_hardness"]
-explainer = shap.TreeExplainer(model)
 
 # 2. FastAPI app
 app = FastAPI(
@@ -164,9 +163,9 @@ def predict(
     pred_label = classes[best_idx]
     confidence = float(probs[best_idx])
 
-    # SHAP values for predicted class
-    shap_vals = explainer.shap_values(data)
-    class_shap = shap_vals[0, :, best_idx]
+    # SHAP values for predicted class (XGBoost's built-in TreeSHAP; the shap package cannot read XGBoost 3 models)
+    contribs = model.get_booster().predict(xgb.DMatrix(data.to_numpy()), pred_contribs=True)
+    class_shap = contribs[0, best_idx, :-1]
     shap_dict = {f: round(float(v), 4) for f, v in zip(features, class_shap)}
 
     # Construct the Groq prompt based on SHAP attributions
