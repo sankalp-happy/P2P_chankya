@@ -48,3 +48,22 @@ Everything after "+" is an addition beyond `schema.py` in PLAN.md. P4 has not be
 2. **Tell P4** about the extra functions and columns in the table above.
 3. **Report draft** `docs/P3_REPORT_DRAFT.md`: fill `[[N_LOW_COVERAGE_WEEKS]]` (building-weeks under 90% coverage, from `leaderboard()` over every week), `[[CLAUDE_AI_SHARE_LINK]]`, and the `[[TO FILL after review]]` fields in the prompt-log entry. What went wrong to record there: the brief's late count (296 raw vs 112 after dedup), missed blank cells (205 rows), and noisy e-waste share alerts (removed). Give the prompt-log entry to P2 for `docs/promptlog.md`.
 4. Known limits, marked with `# ponytail:` comments in the code: the typical profile uses the whole period (display only, never used for training); waste-share alerts are noisy (30–40% of weeks) because bins are a ~1% sample, so show them as information, not urgent alerts; B02's water pct_saved is inflated on the stuck-meter week (credits are still blocked by coverage).
+
+## API for the React UI (`api.py`)
+
+FastAPI backend for `frontend/` (routes in `frontend/CONTRACT.md`, shapes in `frontend/src/api/types.ts`). It wraps everyone's functions; all field mapping lives in `api.py`, nobody else's file changes.
+
+Needs FastAPI ≥ 0.162 (0.110 crashes with Starlette 1.x: `pip3 install -U fastapi`).
+
+```bash
+python3 -m uvicorn api:app --port 8000
+```
+
+Then, in another terminal:
+
+```bash
+cd frontend && VITE_API_MODE=live npm run dev
+```
+
+Mappings: `status` → `quality` (measured/revised = real, filled = filled, estimated = missing) plus `received_at`; classifier `classes` → `class_names`, tuple or dict accepted for `predict()`/`classifier_metrics()`; forecast-metrics = one row per method, `error` = mean normal-day % error at 12 h over both streams; UI stream `electricity`/`water` ↔ `electricity_kwh`/`water_litres`; recommend evidence as "fact (+points)" strings; timestamps `YYYY-MM-DD HH:MM`, NaN → null.
+Speed: static routes are built once at startup. The first `/api/forecast` per building + time takes 1.7–4 s (P1's model), then it's cached. P2's classifier is imported lazily, so if `src/classifier.py` breaks, only its two routes return 503.
