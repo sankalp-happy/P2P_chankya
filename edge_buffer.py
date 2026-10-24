@@ -125,7 +125,7 @@ MIN_BIN_EVENTS = 10  # ponytail: a weekly share from fewer bin events is a coin 
 
 
 def _monday(t):
-    return t.dt.normalize() - pd.to_timedelta(t.dt.weekday, unit="D")
+    return t.dt.normalize() - pd.to_timedelta(t.dt.day_of_week, unit="D")
 
 
 def _num(x):
