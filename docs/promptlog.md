@@ -9,7 +9,22 @@
 
 ## How to add an entry
 
-Find your section below, copy the template, fill every field, and append it.
+There are **two formats**. Use whichever fits the situation.
+
+### ⚡ Quick Log (chat / exploratory / one-off)
+Use this any time you paste something into Claude.ai, ChatGPT, Gemini, Antigravity, Copilot, or any AI chat. One row in the Quick Log table in Section 5 — takes 30 seconds.
+
+| Field | What to write |
+|---|---|
+| Date/Time | YYYY-MM-DD HH:MM |
+| Who | P1 / P2 / P3 / P4 |
+| Tool | Claude.ai / ChatGPT / Antigravity / Copilot / etc. |
+| Prompt | Paste the exact text you sent |
+| What it gave you | One-line summary of the response |
+| Verdict | ✅ Used / ⚠️ Partially used / ❌ Ignored |
+
+### 📋 Full Entry (runtime / code-level prompts)
+Use this for any prompt that ends up inside Python code (`explain.py`, `classifier.py`, etc.).
 
 ```
 ### Entry X.Y — [Short title]
@@ -286,11 +301,20 @@ _Prompts and findings from the Chronos-2 forecasting comparison run after 2:00._
 
 ---
 
-## Section 5 — Exploratory / One-off Prompts
+## Section 5 — Quick Log (all teammates, all tools)
 
-_AI help used during development or debugging that is not called at runtime. Add entries here as you go._
+_Every prompt sent to any AI tool — chat, IDE assistant, or code helper — goes here as a one-liner.
+No friction: just add a row. Graders look at coverage across the whole team._
 
-<!-- Add entries here -->
+| Date/Time | Who | Tool | Prompt (exact text) | What it gave you | Verdict |
+|---|---|---|---|---|---|
+| 2026-10-24 12:10 | P4 (Sankalp) | Antigravity (Claude) | `make a docs/promptlog.md for the collection of all the prompts being used. also make a claude.md with instruction to put every prompts in the promptlog.md` | Created `docs/promptlog.md` (structured log template) and `claude.md` (team AI-usage rules) | ✅ Used |
+| 2026-10-24 12:11 | P4 (Sankalp) | Antigravity (Claude) | `push it after completion` | Committed and pushed both files to `origin/main` | ✅ Used |
+| 2026-10-24 12:13 | P4 (Sankalp) | Antigravity (Claude) | `claude.md add basic instructions like dont touch someone else's code, etc etc` | Added team collaboration rules section (file ownership, git rules, comms) to `claude.md` | ✅ Used |
+| 2026-10-24 12:38 | P4 (Sankalp) | Antigravity (Claude) | `pull the main and clean the codebase. put all the scripts inside src. organise the codebase.` | Reorganised repo: `src/`, `datasets/raw`, `datasets/clean`, `data/`, `models/`, `docs/` | ✅ Used |
+| 2026-10-24 12:40 | P4 (Sankalp) | Antigravity (Claude) | `whatever abhijit has pushed in prompts.md put it in the promptlog. make sure the prompts are recorded in the desired manner only.` | Migrated all 7 of Abhijit's entries from `PROMPTS.md` into `promptlog.md` as a structured workbook | ✅ Used |
+
+_← Add your row here. One row per prompt, any tool, any teammate._
 
 ---
 

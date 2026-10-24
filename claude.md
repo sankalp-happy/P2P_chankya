@@ -48,9 +48,18 @@ The function signatures in `schema.py` are agreed on at 0:00–0:20 and then **f
 
 ## 🔑 Core rule
 
-**Every prompt you send to Claude (or any AI model) must be logged in [`docs/promptlog.md`](docs/promptlog.md) before you commit your code.**
+**Every prompt you send to any AI model must appear in [`docs/promptlog.md`](docs/promptlog.md) before you commit your code.**
 
-No exceptions. This is a graded deliverable — a fifth of our marks come from the prompt log.
+No exceptions. A fifth of our marks come from the prompt log.
+
+**There are two formats — pick the one that takes less effort:**
+
+| Situation | Format to use |
+|---|---|
+| Chat / IDE assistant / exploratory (Claude.ai, ChatGPT, Gemini, Antigravity, Copilot…) | ⚡ **Quick Log** — one row in the Section 5 table |
+| Prompt that ends up inside Python code (`explain.py`, `classifier.py`, etc.) | 📋 **Full Entry** — complete template with verdict |
+
+The Quick Log takes 30 seconds. There is no excuse to skip it.
 
 ---
 
@@ -58,14 +67,15 @@ No exceptions. This is a graded deliverable — a fifth of our marks come from t
 
 Log it if you:
 
-- call `anthropic.messages.create(...)` or any equivalent SDK method in Python code
-- paste text into Claude.ai, ChatGPT, Gemini, or any chat interface to help with this project
-- use a GitHub Copilot / Cursor / AI-assisted completion that you explicitly crafted (not auto-suggested boilerplate)
-- use an AI to interpret results or write any part of the report
+- call `anthropic.messages.create(...)` or any equivalent SDK method in Python code → **Full Entry**
+- paste text into Claude.ai, ChatGPT, Gemini, Antigravity, or any AI chat to help with this project → **Quick Log row**
+- use GitHub Copilot / Cursor / any AI-assisted completion you explicitly crafted → **Quick Log row**
+- use an AI to interpret results or write any part of the report → **Quick Log row**
 
 You do **not** need to log:
-- generic autocomplete suggestions you didn't prompt for
+- generic autocomplete suggestions you didn't craft
 - spell-check or grammar suggestions
+
 
 ---
 
