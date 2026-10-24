@@ -71,7 +71,7 @@ function ActionItem({ r, index, open, onToggle }: { r: Recommendation; index: nu
           <span className="num w-5 pt-0.5 text-[20px] text-faint">{index + 1}</span>
           <Sprite name={BUILDING_SPRITE[r.building_id]} size={30} />
           <div className="min-w-0 flex-1">
-            <div className="text-[13.5px] leading-snug font-medium text-fg">{r.cause}</div>
+            <div className="text-[13.5px] leading-snug font-medium text-fg">{r.cause_label ?? r.cause}</div>
             <div className="mono mt-1 text-[10.5px] tracking-[0.08em] text-dim uppercase">
               {SHORT_NAME[r.building_id]}
               {r.stream ? ` · ${r.stream}` : ''}

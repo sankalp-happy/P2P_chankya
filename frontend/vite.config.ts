@@ -2,11 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
-// VITE_API_MODE=live switches src/api to the FastAPI backend on :8000 (proxied as /api).
+// The team backend (repo-root api.py, `uvicorn api:app --port 8000`) serves /api/*; proxied unchanged.
+// VITE_API_MODE=mock disables all backend calls.
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     port: 5173,
-    proxy: { '/api': 'http://localhost:8000' },
+    proxy: { '/api': { target: 'http://127.0.0.1:8000', changeOrigin: true } },
+  },
+  preview: {
+    proxy: { '/api': { target: 'http://127.0.0.1:8000', changeOrigin: true } },
   },
 });

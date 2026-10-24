@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { create } from 'zustand';
-import { API_MODE } from '../api';
+import { API_MODE, LIVE_COUNT } from '../api';
 import { useDataset } from '../api/hooks';
 import type { CalendarDay } from '../api/types';
 import { SPEEDS, TICK_MS, useTime } from '../store/time';
@@ -111,9 +111,12 @@ function TimeBar() {
             ))}
           </div>
           <Transport />
-          <span className={clsx('chip', API_MODE === 'mock' ? 'text-dim' : 'text-ghost [--pb:var(--color-ghost)]')} title="Data source">
+          <span
+            className={clsx('chip', API_MODE === 'mock' ? 'text-dim' : 'text-ghost [--pb:var(--color-ghost)]')}
+            title={API_MODE === 'mock' ? 'All data from mock fixtures' : 'Live from the team backend (api.py); any route that fails falls back to mock'}
+          >
             <span className={clsx('size-1.5', API_MODE === 'mock' ? 'border border-dim' : 'animate-pulse-dot bg-ghost')} />
-            {API_MODE === 'mock' ? 'Mock data' : 'Live API'}
+            {API_MODE === 'mock' ? 'Mock data' : `Live · ${LIVE_COUNT} routes`}
           </span>
         </div>
       </div>

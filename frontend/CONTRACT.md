@@ -1,8 +1,12 @@
 # Frontend ↔ backend contract
 
-The UI runs on mock data by default (`public/mock/*.json`, built by `npm run fixtures`).
-To use the real Python functions, run FastAPI on `:8000` and start the UI with `VITE_API_MODE=live`.
-Vite proxies `/api/*` to `http://localhost:8000`. Field names match the team brief; full types are in `src/api/types.ts`.
+The UI talks to the team backend, repo-root `api.py` (P3), started with `uvicorn api:app --port 8000`
+from the repo root. Its routes carry the `/api` prefix; Vite proxies `/api/*` to `:8000` unchanged, in both
+`npm run dev` and `npm run demo`.
+
+Every route below is called live. If the backend is down or a call fails, that call falls back to mock data
+(built from the real dataset) and the backend is retried after 15 s. `VITE_API_MODE=mock` forces mock everywhere.
+Field names match the team brief; full types are in `src/api/types.ts`.
 
 | Route | Python function | Returns |
 |---|---|---|

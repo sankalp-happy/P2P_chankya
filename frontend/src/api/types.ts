@@ -97,6 +97,8 @@ export interface Recommendation {
   /** Optional extras the UI shows when present */
   stream?: Stream;
   evidence?: string[];
+  /** P1: readable text for the `cause` code */
+  cause_label?: string;
 }
 
 /** leaderboard(as_of) */
@@ -112,6 +114,11 @@ export interface LeaderboardRow {
   expected_low?: number;
   expected_high?: number;
   simulated?: boolean;
+  /** P3: why a building got no / capped credits */
+  reason?: string;
+  /** P3: expected/actual above are an index (100 = normal); these are the electricity part in kWh */
+  kwh_expected?: number;
+  kwh_actual?: number;
 }
 
 /** simulate_outage(building_id, start_ts, hours) */
@@ -161,6 +168,10 @@ export interface Prediction {
   confidence: number;
   time_ms: number;
   route: 'bin' | 'manual_sort';
+  /** Live backend extras: SHAP attribution per sensor and the LLM's plain-English reason */
+  shap?: Record<string, number>;
+  explanation?: string;
+  source?: 'live' | 'mock';
 }
 
 /** classifier_metrics() */

@@ -7,7 +7,7 @@ import { PageHeader } from '../components/PageHeader';
 import CountUp from '../components/rb/CountUp';
 import SplitFlapText from '../components/rb/SplitFlapText';
 import { Panel, Skeleton, Sprite } from '../components/ui';
-import { BUILDING_SPRITE, CREDIT_SHARE, MIN_COVERAGE, SHORT_NAME } from '../lib/constants';
+import { BUILDING_SPRITE, MIN_COVERAGE, SHORT_NAME } from '../lib/constants';
 import { fmtInt, fmtNum, fmtPct } from '../lib/format';
 import { HOURS, dayIndex, fmtDay, tToDay } from '../lib/time';
 import { useTime } from '../store/time';
@@ -106,7 +106,7 @@ export default function League() {
                   <CountUp to={credits} duration={0.5} separator="," trigger="load" />
                 </span>
               </div>
-              <div className="mono mt-1 text-[10.5px] text-dim">credits = ₹1 each · {CREDIT_SHARE * 100}% of verified savings</div>
+              <div className="mono mt-1 text-[10.5px] text-dim">credits earned this week, across all buildings</div>
             </div>
           </div>
           <p className="mt-3 text-[12.5px] leading-relaxed text-soft">
@@ -198,7 +198,9 @@ function Row({ r }: { r: LeaderboardRow }) {
             {r.simulated && <span className="mono text-[9px] text-faint">SIM</span>}
           </div>
           <div className="mono text-[10px] text-dim">
-            {fmtInt(r.actual)} / {fmtInt(r.expected)} kWh
+            {r.kwh_actual != null && r.kwh_expected != null
+              ? `${fmtInt(r.kwh_actual)} / ${fmtInt(r.kwh_expected)} kWh`
+              : `${fmtInt(r.actual)} / ${fmtInt(r.expected)} kWh`}
           </div>
         </div>
       </div>

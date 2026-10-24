@@ -7,7 +7,7 @@ export const BAG_KG = 8;
 
 export const CREDIT_SHARE = 0.3; // share of verified savings returned to the building fund
 export const MIN_COVERAGE = 0.9; // below this, a building earns no credits that week
-export const MANUAL_SORT_BELOW = 0.7; // classifier confidence threshold
+export const MANUAL_SORT_BELOW = 0.6; // classifier confidence threshold (matches P2's not_sure_threshold)
 
 export type Stream = 'electricity' | 'water';
 

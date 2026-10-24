@@ -38,6 +38,7 @@ export default function SmartBin() {
   const [counts, setCounts] = useState<Record<WasteClass, number>>(() => Object.fromEntries(WASTE_CLASSES.map((c) => [c, 0])) as Record<WasteClass, number>);
   const [stats, setStats] = useState({ n: 0, manual: 0, ms: 0 });
   const cursor = useRef<number | null>(null);
+  const inFlight = useRef(false);
 
   const startIdx = useMemo(() => {
     if (!events) return 0;
@@ -56,11 +57,13 @@ export default function SmartBin() {
     if (!running || !events) return;
     let alive = true;
     const id = window.setInterval(async () => {
+      if (inFlight.current) return; // live predict can take longer than one tick
       const i = cursor.current ?? startIdx;
       if (i >= events.length) return setRunning(false);
       cursor.current = i + 1;
       const ev = events[i];
-      const pred = await api.predict(ev);
+      inFlight.current = true;
+      const pred = await api.predict(ev).finally(() => (inFlight.current = false));
       if (!alive) return;
       setFeed((f) => [{ ev, pred }, ...f].slice(0, 40));
       setCounts((c) => ({ ...c, [pred.label]: c[pred.label] + 1 }));
@@ -170,7 +173,7 @@ function CurrentItem({ cur, ranges }: { cur: Sorted; ranges: Record<string, numb
         <div className="flex flex-1 flex-col items-center gap-1">
           <div className="mono text-[10px] text-ghost">{fmtNum(pred.time_ms, 2)} ms</div>
           <div className="h-px w-full bg-gradient-to-r from-line-strong via-ghost to-line-strong" />
-          <div className="mono text-[10px] text-dim">edge inference</div>
+          <div className="mono text-[10px] text-dim">{pred.source === 'live' ? 'live API round trip' : 'edge inference'}</div>
         </div>
         <div className="grid place-items-center">
           <Sprite name={destSprite(pred)} size={92} />
@@ -192,16 +195,30 @@ function CurrentItem({ cur, ranges }: { cur: Sorted; ranges: Record<string, numb
           </span>
         </div>
         <ConfidenceBar value={pred.confidence} />
+        {pred.explanation && (
+          <div className="pixel mt-4 p-3 [--pb:var(--color-ghost)] [--pf:var(--color-bg)] [--px:4px]">
+            <div className="eyebrow mb-1 text-[9.5px] text-ghost">Why · model explanation</div>
+            <p className="text-[12.5px] leading-relaxed text-soft">{pred.explanation}</p>
+          </div>
+        )}
         <dl className="mt-4 space-y-2">
           {SENSORS.map((s) => {
             const v = ev[s.key] as number | null;
             return (
-              <div key={s.key} className="grid grid-cols-[96px_1fr_64px] items-center gap-3">
+              <div key={s.key} className="grid grid-cols-[96px_1fr_104px] items-center gap-3">
                 <dt className="mono text-[10.5px] tracking-[0.06em] text-dim uppercase">{s.label}</dt>
                 <div className="h-1.5 bg-raised">
                   {v != null && <div className="h-full bg-soft transition-[width] duration-200" style={{ width: `${Math.min(100, (v / ranges[s.key]) * 100)}%` }} />}
                 </div>
-                <dd className={clsx('mono text-right text-[12px]', v == null ? 'text-alert' : 'text-fg')}>{v == null ? 'no read' : `${fmtNum(v, s.d)}${s.unit}`}</dd>
+                <dd className={clsx('mono text-right text-[12px]', v == null ? 'text-alert' : 'text-fg')}>
+                  {v == null ? 'no read' : `${fmtNum(v, s.d)}${s.unit}`}
+                  {pred.shap?.[s.key] != null && (
+                    <span className={clsx('ml-1.5 text-[10px]', pred.shap[s.key] >= 0 ? 'text-good' : 'text-bad')} title="SHAP: push toward (+) or away (−) from the prediction">
+                      {pred.shap[s.key] >= 0 ? '+' : ''}
+                      {fmtNum(pred.shap[s.key], 2)}
+                    </span>
+                  )}
+                </dd>
               </div>
             );
           })}

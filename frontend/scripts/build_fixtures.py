@@ -10,7 +10,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-DATA = Path(__file__).resolve().parents[2] / "P2P_DATASET"
+_ROOT = Path(__file__).resolve().parents[2]
+# datasets/raw after the repo refactor; P2P_DATASET in older checkouts
+DATA = next(p for p in (_ROOT / "datasets" / "raw", _ROOT / "P2P_DATASET") if p.exists())
 OUT = Path(__file__).resolve().parents[1] / "public" / "mock"
 OUT.mkdir(parents=True, exist_ok=True)
 
