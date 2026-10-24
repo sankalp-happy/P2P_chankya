@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { AnimatePresence, motion } from 'motion/react';
 import { useDeferredValue, useMemo, useState } from 'react';
 import { useDataset, useForecasts, useRecommend } from '../api/hooks';
-import type { Recommendation } from '../api/types';
+import type { ForecastPoint, Recommendation } from '../api/types';
 import { deriveAlerts, type Alert } from '../lib/alerts';
 import { BUILDING_SPRITE, SHORT_NAME } from '../lib/constants';
 import { fmtInt, fmtNum, fmtRs } from '../lib/format';
@@ -53,7 +53,7 @@ export function ActionsPanel({ t: liveT, buildingFilter, className }: { t: numbe
 function ActionItem({ r, index, open, onToggle }: { r: Recommendation; index: number; open: boolean; onToggle: (k: string | null) => void }) {
   const key = `${r.building_id}${r.cause}`;
   return (
-    <motion.li layout initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ delay: index * 0.03, duration: 0.2 }}>
+    <motion.li initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ delay: index * 0.03, duration: 0.2 }}>
       <button
         onClick={() => {
           onToggle(open ? null : key);
@@ -115,16 +115,14 @@ function ActionItem({ r, index, open, onToggle }: { r: Recommendation; index: nu
 export function useAlerts(t: number) {
   const { data: ix } = useDataset();
   const ids = ix?.ids ?? [];
-  const fe = useForecasts(ids, 'electricity', t);
-  const fw = useForecasts(ids, 'water', t);
-  const feData = fe.map((q) => q.data);
-  const fwData = fw.map((q) => q.data);
+  const fe = useForecasts(ids, 'electricity', t).data;
+  const fw = useForecasts(ids, 'water', t).data;
   return useMemo(() => {
     if (!ix) return [];
-    const toMap = (arr: typeof feData) => Object.fromEntries(ids.map((id, i) => [id, arr[i]]));
-    return deriveAlerts(ix, t, { electricity: toMap(feData), water: toMap(fwData) });
+    const toMap = (arr?: ForecastPoint[][]) => Object.fromEntries(ids.map((id, i) => [id, arr?.[i]]));
+    return deriveAlerts(ix, t, { electricity: toMap(fe), water: toMap(fw) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ix, t, ...feData, ...fwData]);
+  }, [ix, t, fe, fw]);
 }
 
 const KIND_LABEL: Record<Alert['kind'], string> = { spike: 'Spike ahead', offline: 'Offline', mismatch: 'Log ≠ sensor' };
@@ -162,7 +160,6 @@ export function AlertsPanel({ t: liveT, buildingFilter, className, max = 7 }: { 
             {alerts.map((a) => (
               <motion.li
                 key={a.id}
-                layout
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 8 }}

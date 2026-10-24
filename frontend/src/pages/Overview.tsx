@@ -1,8 +1,9 @@
 import clsx from 'clsx';
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDataset, useForecast } from '../api/hooks';
 import { ActionsPanel, AlertsPanel } from '../components/Insights';
+import { Modal } from '../components/Modal';
 import { PageHeader } from '../components/PageHeader';
 import { ChartLegend, ResourceChart, useChartFrame } from '../components/ResourceChart';
 import CountUp from '../components/rb/CountUp';
@@ -18,6 +19,10 @@ import { useTime } from '../store/time';
 export default function Overview() {
   const t = useTime((s) => s.t);
   const { data: ix } = useDataset();
+  const [showAll, setShowAll] = useState(false);
+  const closeAll = useCallback(() => setShowAll(false), []);
+  // Stable element: PageHeader is memoized, and the button reads the clock itself.
+  const headerRight = useMemo(() => (ix ? <AllBuildingsButton ix={ix} onOpen={() => setShowAll(true)} /> : null), [ix]);
 
   if (!ix) return <OverviewSkeleton />;
 
@@ -27,17 +32,57 @@ export default function Overview() {
         index={1}
         title="Campus overview"
         sub="Eight buildings, one clock. Every number below is what the grid knew at this hour. Only the dotted forecast looks ahead."
+        right={headerRight}
       />
       <KpiStrip ix={ix} t={t} />
-      <div className="mt-4 grid grid-cols-12 gap-4">
+      {/* items-start: side panels size to their content instead of stretching to the charts */}
+      <div className="mt-4 grid grid-cols-12 items-start gap-4">
         <div className="col-span-12 flex flex-col gap-4 xl:col-span-8">
           <BuildingForecast ix={ix} t={t} />
           <CampusForecast ix={ix} t={t} />
         </div>
-        <ActionsPanel t={t} className="col-span-12 xl:col-span-4" />
-        <BuildingGrid ix={ix} t={t} />
-        <AlertsPanel t={t} className="col-span-12 xl:col-span-4" />
+        <div className="col-span-12 flex flex-col gap-4 xl:col-span-4">
+          <AlertsPanel t={t} />
+          <ActionsPanel t={t} />
+        </div>
       </div>
+      <Modal
+        open={showAll}
+        onClose={closeAll}
+        title="All buildings"
+        subtitle={<AllBuildingsSubtitle t={t} />}
+      >
+        <BuildingGrid ix={ix} t={t} onPick={closeAll} />
+      </Modal>
+    </>
+  );
+}
+
+function AllBuildingsButton({ ix, onOpen }: { ix: DataIndex; onOpen: () => void }) {
+  const t = useTime((s) => s.t);
+  const st = ix.ids.map((id) => statusAt(ix.series[id], t).status);
+  const offline = st.filter((s) => s === 'offline').length;
+  return (
+    <button className="btn h-11 gap-3 pr-3 pl-3" onClick={onOpen} aria-haspopup="dialog">
+      <svg viewBox="0 0 16 16" className="ml-1 size-4" fill="currentColor" aria-hidden>
+        <rect x="1" y="1" width="6" height="6" />
+        <rect x="9" y="1" width="6" height="6" />
+        <rect x="1" y="9" width="6" height="6" />
+        <rect x="9" y="9" width="6" height="6" />
+      </svg>
+      <span>All buildings</span>
+      <span className={clsx('chip h-6', offline ? 'text-alert [--pb:var(--color-alert)]' : 'text-good [--pb:var(--color-good)]')}>
+        {offline ? `${offline} offline` : `${ix.ids.length} live`}
+      </span>
+    </button>
+  );
+}
+
+function AllBuildingsSubtitle({ t }: { t: number }) {
+  const c = fmtClock(t);
+  return (
+    <>
+      Live at {c.day} {c.mon} {c.hh}:00 · click a building to forecast it, double-click for its detail page
     </>
   );
 }
@@ -245,18 +290,18 @@ function CampusForecast({ ix, t }: { ix: DataIndex; t: number }) {
   );
 }
 
-function BuildingGrid({ ix, t }: { ix: DataIndex; t: number }) {
+function BuildingGrid({ ix, t, onPick }: { ix: DataIndex; t: number; onPick: () => void }) {
   const building = useTime((s) => s.building);
   return (
-    <div className="col-span-12 grid grid-cols-2 gap-4 lg:grid-cols-4 xl:col-span-8">
+    <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
       {ix.ids.map((id) => (
-        <BuildingCard key={id} ix={ix} id={id} t={t} selected={building === id} />
+        <BuildingCard key={id} ix={ix} id={id} t={t} selected={building === id} onPick={onPick} />
       ))}
     </div>
   );
 }
 
-function BuildingCard({ ix, id, t, selected }: { ix: DataIndex; id: string; t: number; selected: boolean }) {
+function BuildingCard({ ix, id, t, selected, onPick }: { ix: DataIndex; id: string; t: number; selected: boolean; onPick: () => void }) {
   const navigate = useNavigate();
   const s = ix.series[id];
   const b = ix.byId.get(id)!;
@@ -283,8 +328,10 @@ function BuildingCard({ ix, id, t, selected }: { ix: DataIndex; id: string; t: n
     >
       <button
         className="block w-full p-4 text-left"
-        onClick={() => {
+        onClick={(e) => {
           useTime.getState().setBuilding(id);
+          // a double-click's first click shouldn't close the dialog before the second arrives
+          if (e.detail === 1) window.setTimeout(onPick, 220);
         }}
         onDoubleClick={() => navigate('/building')}
         aria-pressed={selected}

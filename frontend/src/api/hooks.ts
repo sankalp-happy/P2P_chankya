@@ -25,35 +25,33 @@ export function useDataset() {
   });
 }
 
-export function useForecast(id: string, stream: Stream, t: number, horizon = 12) {
+// Batched on purpose: one query per (building set, stream, hour) instead of one per building.
+// Each resolving query re-renders its subscribers, so per-building queries meant ~30 renders of
+// the Overview per playback tick. Batching makes it one render per data group.
+export function useForecasts(ids: string[], stream: Stream, t: number, horizon = 12) {
   return useQuery({
-    queryKey: ['forecast', id, stream, t, horizon],
-    queryFn: () => api.forecast(id, stream, tToTs(t), horizon),
+    queryKey: ['forecasts', ids.join(), stream, t, horizon],
+    queryFn: () => Promise.all(ids.map((id) => api.forecast(id, stream, tToTs(t), horizon))),
     placeholderData: keepPreviousData,
+    enabled: ids.length > 0,
     ...perHour,
   });
 }
 
-export function useForecasts(ids: string[], stream: Stream, t: number, horizon = 12) {
-  return useQueries({
-    queries: ids.map((id) => ({
-      queryKey: ['forecast', id, stream, t, horizon],
-      queryFn: () => api.forecast(id, stream, tToTs(t), horizon),
-      placeholderData: keepPreviousData,
-      ...perHour,
-    })),
-  });
+export function useForecast(id: string, stream: Stream, t: number, horizon = 12) {
+  const q = useForecasts([id], stream, t, horizon);
+  return { ...q, data: q.data?.[0] };
 }
 
 export function useHistories(ids: string[], stream: Stream, startT: number, endT: number) {
-  return useQueries({
-    queries: ids.map((id) => ({
-      queryKey: ['history', id, stream, startT, endT],
-      queryFn: () => api.forecast_history(id, stream, tToTs(Math.max(0, startT)), tToTs(Math.min(HOURS - 1, endT))),
-      placeholderData: keepPreviousData,
-      retry: false, // optional endpoint: if the backend lacks it, the chart simply omits the ghost line
-      ...perHour,
-    })),
+  return useQuery({
+    queryKey: ['histories', ids.join(), stream, startT, endT],
+    queryFn: () =>
+      Promise.all(ids.map((id) => api.forecast_history(id, stream, tToTs(Math.max(0, startT)), tToTs(Math.min(HOURS - 1, endT))))),
+    placeholderData: keepPreviousData,
+    retry: false, // optional endpoint: if the backend lacks it, the chart simply omits the ghost line
+    enabled: ids.length > 0,
+    ...perHour,
   });
 }
 
