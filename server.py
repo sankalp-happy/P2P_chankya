@@ -188,13 +188,13 @@ def predict(
     if api_key:
         from groq import Groq
         client = Groq(api_key=api_key)
-        # Try available Groq models in order
-        for m_name in ["openai/gpt-oss-120b", "qwen/qwen3.8-27b"]:
+        # Use 7B model
+        for m_name in ["allam-2-7b", "openai/gpt-oss-120b"]:
             try:
                 chat = client.chat.completions.create(
                     model=m_name,
                     messages=[
-                        {"role": "system", "content": "You explain machine learning waste classification decisions using SHAP values clearly, concisely, and factually."},
+                        {"role": "system", "content": "You explain machine learning waste classification decisions using SHAP values clearly, concisely, and factually in plain English."},
                         {"role": "user", "content": prompt}
                     ],
                     max_tokens=200,
