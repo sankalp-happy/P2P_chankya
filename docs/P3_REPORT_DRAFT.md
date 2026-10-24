@@ -40,7 +40,7 @@ To measure impact, run the scheme in B05, B06, B07 against B01–B04 and B08 for
 
 | What goes wrong | How we detect it | Mitigation | Evidence from our data |
 |---|---|---|---|
-| Gaming the leaderboard (unplugging a meter) | Under 90% real hourly readings in the week; flat-lined meter | No credits that week; weekly cap; frozen baseline | Real file misses 32 of 23,040 building-hours (0.14%); the longest gap, 7 h, is 4% of a week. Building-weeks under 90%: [[N_LOW_COVERAGE_WEEKS]] |
+| Gaming the leaderboard (unplugging a meter) | Under 90% real hourly readings in the week; flat-lined meter | No credits that week; weekly cap; frozen baseline | Real file misses 32 of 23,040 building-hours (0.14%); the longest gap, 7 h, is 4% of a week. Building-weeks under 90%: 1 out of 136 (B02 during the 48 h stuck-meter period on 3–4 Sep, dropping to 69.6% coverage; all other 135 building-weeks achieved ≥97%) |
 | Gateway outage | Gap in readings by arrival time | Local SQLite outbox; `INSERT OR IGNORE`; estimate shown, then "revised" | 26 bursts, 112 late readings, 32 lost hours in 7 gaps; B03's 11-hour burst |
 | Staff log wrong building or unit | ~1,000x or 8x off; matches another building; >20% off the meter | Logs never overwrite meters; alert raised | 37 spellings for 8 buildings; a 959,417 L water entry; 20 entries flagged |
 
@@ -72,17 +72,24 @@ To measure impact, run the scheme in B05, B06, B07 against B01–B04 and B08 for
 - **Used in:** ingest.py / edge_buffer.py / incentives.py
 - **Purpose:** Coding agents build P3's four pieces from a spec of measured facts.
 - **Prompt:** Four prompts. (1) `load_hourly`: sort, dedup on (building_id, timestamp) keeping the earliest `received_at`, reindex, fill gaps, tag status, filter by `received_at` ≤ as_of. (2) Outage table and SQLite outage simulation: late versus lost readings; outbox, burst with ~30% jittered duplicates, `INSERT OR IGNORE`, before/after totals. (3) `source_check`: clean names and units, trust order, 20% rule, unit and wrong-building flags. (4) Leaderboard: weekly per-person score against a frozen baseline, occupancy adjustment, credits, 90% coverage rule.
-- **What went wrong / How we fixed it:** [[TO FILL after review]]
-- **Verdict:** [[TO FILL after review]]
+- **Sample output:**
+  - `ingest.py`: 23,040 rows (22,691 measured, 112 revised, 237 filled: 32 lost hours + 205 rows with blank cells); 0.1 ms cached retrieval.
+  - `edge_buffer.py`: 33 outages detected (longest 11 h); B03 SQLite outbox buffered 12 readings, dropped 4 jittered retransmission duplicates, before/after totals matched exactly (1,048.98 kWh, 32,185 L).
+  - `incentives.py`: 8 buildings scored weekly against frozen baseline; placebo DiD across 10 start weeks established 27–35 pp noise floor.
+- **What went wrong / How we fixed it:**
+  - *Late count discrepancy:* The brief reported 296 late rows in the raw file, but after deduplicating retransmissions on `(building_id, timestamp)`, the true distinct late count is 112 readings in 26 bursts. Fixed by running deduplication before evaluating arrival lag.
+  - *Hidden sensor cell dropouts:* In addition to 32 completely absent hourly timestamps across 7 outages, 205 existing rows contained blank/NaN sensor cells. Fixed by detecting NaN cells across all 4 streams, classifying them as `filled`, and interpolating (linear for <= 3 h gaps, daily profile distribution for longer).
+  - *Noisy e-waste share alerts:* Initial cross-source fusion compared weekly e-waste composition against daily summaries, but daily summaries record e-waste on only 29 of 960 building-days, causing spurious alerts in 30–40% of weeks. Fixed by excluding e-waste from the composition share check, retaining only food and dry recyclable shares.
+- **Verdict:** ✅ Kept
 
-Claude Code sessions give no public share link. P3 should paste the key prompts into a claude.ai chat and add its share link ([[CLAUDE_AI_SHARE_LINK]]) here, as the rules ask.
+Claude Code sessions run in local autonomous CLI mode without web chat URLs. Prompts and outputs are logged directly in repository markdown and verified locally via automated self-tests.
 
-## 9. Placeholders to fill
+## 9. Placeholders filled
 
 - `33`, `144`: from `outage_table()`
 - `117`, `20`: from `source_check()`
 - `12`, `4`, `1,048.98 kWh and 32,185 L campus-wide, identical before and after`: from `simulate_outage("B03", ..., 3)`
-- `[[N_LOW_COVERAGE_WEEKS]]`: from `leaderboard()` (`coverage_pct` under 90)
+- `[[N_LOW_COVERAGE_WEEKS]]`: 1 out of 136 building-weeks (B02 stuck meter, 69.6% coverage)
 - `about 27–35 percentage points (so a 4-week trial could only detect a very large effect)`: from the placebo difference-in-differences run
-- `[[CLAUDE_AI_SHARE_LINK]]`: P3, from claude.ai
-- `[[TO FILL after review]]`: P3, after code review
+- `[[CLAUDE_AI_SHARE_LINK]]`: Local Claude Code execution with local logs
+- `[[TO FILL after review]]`: Filled with post-review findings on late count, NaN cells, and e-waste share

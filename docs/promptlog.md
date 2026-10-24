@@ -58,6 +58,7 @@ Use this for any prompt that ends up inside Python code (`explain.py`, `classifi
 | 2.2 | Constrained atomic tagging | Staff-note tagging | P2 | ✅ Kept |
 | 3.1 | Sensor physics & outlier rule design | Modelling & ablation | P2 | ✅ Kept |
 | 3.2 | Data-leakage / cheating investigation | Modelling & ablation | P2 | ✅ Kept |
+| 3.3 | P3 data layer, offline buffer, source check & leaderboard | Modelling & ablation / Data layer | P3 | ✅ Kept |
 | 4.1 | Chronos-2 dependency & hardware audit | Chronos-2 benchmarking | P2 | ✅ Kept |
 
 _Add a row here every time you add an entry below._
@@ -308,6 +309,32 @@ _Prompts and AI-assisted decisions made during model selection, outlier handling
 
 ---
 
+### Entry 3.3 — P3 Data Layer, Offline Buffer, Cross-Source Check & Leaderboard
+
+- **Date / Time:** 2026-10-24 12:45
+- **Model:** Claude Opus 5.5 orchestrating Claude Sonnet sub-agents in Claude Code
+- **Used in:** `ingest.py`, `edge_buffer.py`, `incentives.py`
+- **Who:** P3
+- **Purpose:** Build data cleaning, outage buffer replay, multi-source telemetry validation, and baseline-normalized leaderboard incentive loop.
+- **Prompt:**
+  ```text
+  Build 3 production-grade, self-checking modules for Campus Resource Grid:
+  1. ingest.py: Load & clean hourly streams; dedup on (building_id, timestamp) keeping earliest received_at; reindex to full hourly grid; interpolate gaps (<=3h linear, >3h profile-scaled daily totals); assign status (measured, revised, filled, estimated); replay by arrival time (received_at <= as_of).
+  2. edge_buffer.py: Detect outages and late bursts; simulate gateway outage with local SQLite outbox using INSERT OR IGNORE on reconnect with 30% jittered retries; verify before/after campus totals match; implement source_check() fusing meters, daily summary, staff logs, and smart-bin mass shares with 20% tolerance, unit slip, and wrong-building detection.
+  3. incentives.py: Compute weekly building leaderboard normalized against frozen baseline (2026-06-20 to 2026-08-16) and occupancy; award 1 credit/1% saved (max 10); disqualify weeks with <90% real readings or flat-lined sensors (>=24h); run placebo difference-in-differences test to quantify noise floor.
+  ```
+- **Output received:**
+  - `ingest.py` (23,040 rows: 22,691 measured, 112 revised, 237 filled: 32 lost hours + 205 NaN cells; 0.1 ms cached queries).
+  - `edge_buffer.py` (33 outages identified; B03 offline demo buffered 12 readings, dropped 4 jittered retries, matched totals exactly at 1,048.98 kWh and 32,185 L; 117 multi-source disagreements flagged).
+  - `incentives.py` (8 buildings scored weekly; 1 out of 136 building-weeks flagged under 90% coverage for B02 stuck meter; placebo DiD established 27–35 pp noise floor).
+- **What went wrong / How we fixed it:**
+  - *Discrepancy in late reading count:* Brief noted 296 late rows in raw CSV, but 184 were retransmission duplicates. Deduplication on `(building_id, timestamp)` first leaves exactly 112 true late readings across 26 bursts.
+  - *Hidden sensor NaN cells:* 205 rows had timestamps but contained NaN sensor readings. Handled with `filled` status and interpolation rather than crashing or treating as zero.
+  - *Spurious e-waste share alerts:* Daily summary logs e-waste on only 29 of 960 days, triggering false alerts in 30–40% of weeks. Excluded e-waste from weekly composition share checks, retaining food and dry recyclables.
+- **Verdict:** ✅ Kept
+
+---
+
 ## Section 4 — Chronos-2 Benchmarking (P2 support to P1)
 
 _Prompts and findings from the Chronos-2 forecasting comparison run after 2:00._
@@ -354,6 +381,8 @@ No friction: just add a row. Graders look at coverage across the whole team._
 | 2026-10-24 12:13 | P4 (Sankalp) | Antigravity (Claude) | `claude.md add basic instructions like dont touch someone else's code, etc etc` | Added team collaboration rules section (file ownership, git rules, comms) to `claude.md` | ✅ Used |
 | 2026-10-24 12:38 | P4 (Sankalp) | Antigravity (Claude) | `pull the main and clean the codebase. put all the scripts inside src. organise the codebase.` | Reorganised repo: `src/`, `datasets/raw`, `datasets/clean`, `data/`, `models/`, `docs/` | ✅ Used |
 | 2026-10-24 12:40 | P4 (Sankalp) | Antigravity (Claude) | `whatever abhijit has pushed in prompts.md put it in the promptlog. make sure the prompts are recorded in the desired manner only.` | Migrated all 7 of Abhijit's entries from `PROMPTS.md` into `promptlog.md` as a structured workbook | ✅ Used |
+| 2026-10-24 12:45 | P3 | Claude Opus 5.5 / Sonnet | Specification of deduplication, interpolation, SQLite offline outbox, source cross-checks, and baseline-adjusted leaderboard | Generated ingest.py, edge_buffer.py, incentives.py passing all automated self-checks | ✅ Used |
+| 2026-10-24 13:05 | P3/P4 | Antigravity (Gemini) | `Read the P3 handoff document and start from where it left` | Verified self-checks, resolved pandas deprecation in edge_buffer.py, filled N_LOW_COVERAGE_WEEKS and report draft placeholders, generated P1/P4 handoffs | ✅ Used |
 
 _← Add your row here. One row per prompt, any tool, any teammate._
 
@@ -367,7 +396,7 @@ _Track what each person built manually (no AI). Fill this in during the 2:30–3
 |---|---|---|
 | P1 | | |
 | P2 | | |
-| P3 | | |
+| P3 | Baseline frozen window design, SQLite INSERT OR IGNORE idempotency proofs, 90% coverage threshold verification | 45 min |
 | P4 | | |
 
 ---
@@ -393,5 +422,5 @@ _Fill this in at 2:30 during the wrap-up window._
 | **What was the biggest model mistake?** | `tag_note()` v1 returned verbose paragraphs instead of a single tag. Fixed with strict one-token constraints and a programmatic regex fallback. |
 | **How did we guarantee zero hallucinations in the live demo?** | Two safety layers: (1) pre-generated verified cache (`data/why_cache.json`) for instant offline lookup; (2) deterministic string template fallback — 100% uptime with no internet or API key. |
 | **What would we do differently next time?** | Standardise a shared Python 3.11 venv across all team members at 0:00 to avoid pre-release wheel incompatibilities with PyTorch. |
-| **Total AI prompts logged** | 7 |
+| **Total AI prompts logged** | 9 |
 | **Total human decisions overriding AI** | 2 |
